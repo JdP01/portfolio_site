@@ -1,0 +1,36 @@
+/* Custom styles for portfolio site */
+
+/* Make navbar sticky at top */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1020; /* Ensure it stays above other content */
+}
+
+/* Make footer sticky at bottom */
+footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 1020; /* Ensure it stays above other content */
+}
+
+/* Adjust body to account for sticky elements */
+body {
+  padding-top: 0; /* Remove any default padding */
+  padding-bottom: 0; /* Remove any default padding */
+}
+
+/* Ensure main content area has proper spacing */
+.container-fluid.flex-grow-1 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* Additional styling for better appearance */
+.navbar {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+footer {
+  box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+}

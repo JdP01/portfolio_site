@@ -53,7 +53,7 @@
           </p>
           <p class="mb-4">
             I love everything from technology to the ruggedness of mountaineering. I am learning about web development and I can't wait to put it to use!
-            When I am not hard at work on a project, wether for school or personal, you will find me in the gym, with friends, or outside!!!
+            When I am not hard at work on a project, whether for school or personal, you will find me in the gym, with friends, or outside!
           </p>
           <p>
             Please explore my page and feel free to check out my resume! 
@@ -71,22 +71,65 @@
     <div class="container">
       <div class="row">
         <div class="col-12 text-center">
-          <h6 class="mb-2">Connect with me</h6>
-          <div class="d-flex justify-content-center gap-3 mb-1">
-            <a href="https://github.com/JdP01" target="_blank" class="btn btn-outline-dark btn-sm rounded-circle p-2" title="GitHub">
-              <img src="../resources/img/github.png" alt="GitHub" width="20" height="20">
-            </a>
-            <a href="https://www.linkedin.com/in/juan-pleitez-93bb0727a" target="_blank" class="btn btn-outline-dark btn-sm rounded-circle p-2" title="LinkedIn">
-              <img src="../resources/img/linkedin.png" alt="LinkedIn" width="20" height="20">
-            </a>
-            <a href="https://www.instagram.com/juandipleitez/" target="_blank" class="btn btn-outline-dark btn-sm rounded-circle p-2" title="Instagram">
-              <img src="../resources/img/instagram.png" alt="Instagram" width="20" height="20">
-            </a>
+          
+          <!-- Contact Me Button -->
+          <div class="mt-2">
+            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#contactModal">
+              <img src="../resources/img/envelope.png" alt="Contact" width="20" height="20" class="me-2">
+              Contact Me
+            </button>
           </div>
         </div>
       </div>
     </div>
   </footer>
+
+  <!-- Contact Modal -->
+  <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="contactModalLabel">
+            <img src="../resources/img/envelope.png" alt="Contact" width="24" height="24" class="me-2">
+            Contact Information
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="text-center">
+            <div class="mb-3">
+              <strong>Email:</strong><br>
+              <a href="mailto:juandpleitez@gmail.com" class="text-decoration-none">juandpleitez@gmail.com</a>
+            </div>
+            <div class="mb-3">
+              <strong>GitHub:</strong><br>
+              <a href="https://github.com/JdP01" target="_blank" class="text-decoration-none">
+                <img src="../resources/img/github.png" alt="GitHub" width="20" height="20" class="me-2">
+                @JdP01
+              </a>
+            </div>
+            <div class="mb-3">
+              <strong>LinkedIn:</strong><br>
+              <a href="https://www.linkedin.com/in/juan-pleitez-93bb0727a" target="_blank" class="text-decoration-none">
+                <img src="../resources/img/linkedin.png" alt="LinkedIn" width="20" height="20" class="me-2">
+                Juan Pleitez
+              </a>
+            </div>
+            <div class="mb-3">
+              <strong>Instagram:</strong><br>
+              <a href="https://www.instagram.com/juandipleitez/" target="_blank" class="text-decoration-none">
+                <img src="../resources/img/instagram.png" alt="Instagram" width="20" height="20" class="me-2">
+                @juandipleitez
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
