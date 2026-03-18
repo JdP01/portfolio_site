@@ -3,138 +3,88 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Juan Pleitez — Personal Website</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
-        rel="stylesheet" 
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
-        crossorigin="anonymous">
-  <link rel="stylesheet" href="resources/css/stylesheet.css"> <!-- my own stylesheet -->
+  <title>Juan Pleitez | Portfolio</title>
+  <meta name="description" content="Portfolio of Juan Pleitez, blending business analytics, software engineering, and creative technology." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="resources/css/stylesheet.css" />
 </head>
-<body class="d-flex flex-column min-vh-100">
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">My Page</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="index.html">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="views/hobbies.html">Hobbies</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="views/projects.html">Projects</a>
-          </li>
-        </ul>
-      </div>
-      <a class="navbar-brand ms-auto" href="#">
-        <img src="resources/img/img1.jpg" alt="Site Logo" width="60" height="auto" class="img-fluid rounded-circle shadow-lg" >
+<body>
+  <header class="site-header">
+    <div class="site-shell top-nav">
+      <a class="brand" href="index.html" aria-label="Go to homepage">
+        <span class="brand-mark">JP</span>
+        <span class="brand-text">Juan Pleitez</span>
       </a>
+      <ul class="nav-links">
+        <li><a class="active" href="index.html">Home</a></li>
+        <li><a href="views/projects.html">Projects</a></li>
+        <li><a href="views/hobbies.html">Hobbies</a></li>
+        <li><a href="views/resume.html">Resume</a></li>
+      </ul>
     </div>
-  </nav>
+  </header>
 
-  <div class="container-fluid d-flex align-items-center justify-content-center flex-grow-1">
-    <div class="row align-items-center justify-content-center w-100">
-      <div class="col-md-6 text-center d-flex flex-column align-items-center justify-content-center">
-        <h1 class="mb-4 display-4">Juan Pleitez</h1>
-        <img src="resources/img/img1.jpg"
-             alt="Picture of Juan Pleitez" 
-             class="img-fluid rounded-circle shadow-lg" 
-             style="max-width: 400px; width: 90%;">
-      </div>
-      <div class="col-md-6 d-flex align-items-center justify-content-center">
-        <div class="text-center text-md-start px-4">
-          <h2 class="h3 mb-4 text-primary">About Me</h2>
-          <p class="lead mb-4">
-            Hello from El Salvador! I'm Juan Pleitez, a passionate Business Analytics and Computer Science student at CU. 
+  <main>
+    <div class="site-shell">
+      <section class="hero">
+        <div class="reveal reveal-1">
+          <p class="eyebrow">Business + Code + Creativity</p>
+          <h1>Building products where data insight meets real-world execution.</h1>
+          <p class="lead">
+            I am Juan Pleitez, a student at CU Boulder focused on Business Analytics and Computer Science. I design projects that are practical, technical, and built to be used by real people.
           </p>
-          <p class="mb-4">
-            I love everything from technology to the ruggedness of mountaineering. I am learning about web development and I can't wait to put it to use!
-            When I am not hard at work on a project, whether for school or personal, you will find me in the gym, with friends, or outside!
-          </p>
-          <p>
-            Please explore my page and feel free to check out my resume! 
-          </p>
-          <div class="mt-4">
-            <a href="views/resume.html" class="btn btn-primary btn-lg">Resume</a>
+          <div class="cta-row">
+            <a class="button button-primary" href="views/projects.html">See Projects</a>
+            <a class="button button-secondary" href="views/resume.html">View Resume</a>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
+        <article class="hero-card reveal reveal-2">
+          <img src="resources/img/img1.jpg" alt="Portrait of Juan Pleitez" />
+          <p class="hero-card-copy">El Salvador to Boulder: building systems, shipping ideas, and always learning.</p>
+        </article>
+      </section>
 
-  <!-- Footer with Social Media Links -->
-  <footer class="bg-light text-black py-1 mt-auto">
-    <div class="container">
-      <div class="row">
-        <div class="col-12 text-center">
-          
-          <!-- Contact Me Button -->
-          <div class="mt-2">
-            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#contactModal">
-              <img src="resources/img/envelope.png" alt="Contact" width="20" height="20" class="me-2">
-              Contact Me
-            </button>
-          </div>
+      <section class="section reveal reveal-2">
+        <h2 class="section-title">What I Focus On</h2>
+        <p class="section-subtitle">My work blends analytics, engineering, and product thinking, from backend multiplayer systems to AI robotics experiments.</p>
+        <div class="grid grid-3">
+          <article class="card">
+            <div class="kpi">3D</div>
+            <h3>Interactive Development</h3>
+            <p>Building game-like web experiences with Three.js and modern JavaScript stacks.</p>
+          </article>
+          <article class="card">
+            <div class="kpi">Data</div>
+            <h3>Business Analytics</h3>
+            <p>Connecting strategic decisions with clean data, forecasting, and operational context.</p>
+          </article>
+          <article class="card">
+            <div class="kpi">AI</div>
+            <h3>Applied Systems</h3>
+            <p>Experimenting with embodied AI, robotics, and practical assistant workflows.</p>
+          </article>
         </div>
-      </div>
+      </section>
+
+      <section class="contact-panel reveal reveal-3" aria-label="Contact information">
+        <div>
+          <h2 class="section-title">Let us connect</h2>
+          <p class="section-subtitle">I am always open to discussing product ideas, internships, and ambitious builds.</p>
+        </div>
+        <ul class="contact-list">
+          <li>Email: <a href="mailto:juandpleitez@gmail.com">juandpleitez@gmail.com</a></li>
+          <li>GitHub: <a href="https://github.com/JdP01" target="_blank" rel="noopener noreferrer">@JdP01</a></li>
+          <li>LinkedIn: <a href="https://www.linkedin.com/in/juan-pleitez-93bb0727a" target="_blank" rel="noopener noreferrer">Juan Pleitez</a></li>
+          <li>Instagram: <a href="https://www.instagram.com/juandipleitez/" target="_blank" rel="noopener noreferrer">@juandipleitez</a></li>
+        </ul>
+      </section>
     </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-shell">Juan Pleitez Portfolio | Designed for speed, clarity, and modern dark mode.</div>
   </footer>
-
-  <!-- Contact Modal -->
-  <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="contactModalLabel">
-            <img src="resources/img/envelope.png" alt="Contact" width="24" height="24" class="me-2">
-            Contact Information
-          </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="text-center">
-            <div class="mb-3">
-              <strong>Email:</strong><br>
-              <a href="mailto:juandpleitez@gmail.com" class="text-decoration-none">juandpleitez@gmail.com</a>
-            </div>
-            <div class="mb-3">
-              <strong>GitHub:</strong><br>
-              <a href="https://github.com/JdP01" target="_blank" class="text-decoration-none">
-                <img src="resources/img/github.png" alt="GitHub" width="20" height="20" class="me-2">
-                @JdP01
-              </a>
-            </div>
-            <div class="mb-3">
-              <strong>LinkedIn:</strong><br>
-              <a href="https://www.linkedin.com/in/juan-pleitez-93bb0727a" target="_blank" class="text-decoration-none">
-                <img src="resources/img/linkedin.png" alt="LinkedIn" width="20" height="20" class="me-2">
-                Juan Pleitez
-              </a>
-            </div>
-            <div class="mb-3">
-              <strong>Instagram:</strong><br>
-              <a href="https://www.instagram.com/juandipleitez/" target="_blank" class="text-decoration-none">
-                <img src="resources/img/instagram.png" alt="Instagram" width="20" height="20" class="me-2">
-                @juandipleitez
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous">
-  </script>
 </body>
 </html>
