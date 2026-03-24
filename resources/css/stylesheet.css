@@ -430,6 +430,34 @@ p {
   display: block;
 }
 
+.game-frame-wrap:fullscreen {
+  margin-top: 0;
+  width: 100vw;
+  height: 100vh;
+  border: 0;
+  border-radius: 0;
+  background: #000;
+}
+
+.game-frame-wrap:fullscreen iframe {
+  height: 100vh;
+  min-height: 0;
+}
+
+.game-frame-wrap:-webkit-full-screen {
+  margin-top: 0;
+  width: 100vw;
+  height: 100vh;
+  border: 0;
+  border-radius: 0;
+  background: #000;
+}
+
+.game-frame-wrap:-webkit-full-screen iframe {
+  height: 100vh;
+  min-height: 0;
+}
+
 .contact-panel {
   margin-top: 2.1rem;
   border-radius: 12px;
