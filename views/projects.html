@@ -87,10 +87,13 @@
       <section id="rot-royale-player" class="section game-panel" hidden aria-label="Rot Royale game panel">
         <div class="game-panel-top">
           <h2 class="section-title">Rot Royale</h2>
-          <button id="exit-rot-royale" class="button button-secondary" type="button">Exit Game</button>
+          <div class="game-controls">
+            <button id="toggle-fullscreen" class="button button-secondary" type="button">Fullscreen</button>
+            <button id="exit-rot-royale" class="button button-secondary" type="button">Exit Game</button>
+          </div>
         </div>
         <p class="section-subtitle">Embedded build from your local projects/RotRoyale dist output.</p>
-        <div class="game-frame-wrap">
+        <div id="rot-royale-wrap" class="game-frame-wrap">
           <iframe id="rot-royale-frame" src="about:blank" title="Rot Royale 3D game" loading="eager"
             allow="fullscreen; gamepad; autoplay" referrerpolicy="no-referrer"></iframe>
         </div>
@@ -123,12 +126,30 @@
       var projectsGrid = document.getElementById("projects-grid");
       var gamePanel = document.getElementById("rot-royale-player");
       var gameFrame = document.getElementById("rot-royale-frame");
+      var gameWrap = document.getElementById("rot-royale-wrap");
       var exitButton = document.getElementById("exit-rot-royale");
+      var fullscreenButton = document.getElementById("toggle-fullscreen");
       var rotRoyaleCard = document.querySelector('[data-action="launch-rot-royale"]');
       var gameSrc = "../projects/RotRoyale/index.html";
 
-      if (!projectsGrid || !gamePanel || !gameFrame || !exitButton || !rotRoyaleCard) {
+      if (!projectsGrid || !gamePanel || !gameFrame || !gameWrap || !exitButton || !fullscreenButton || !rotRoyaleCard) {
         return;
+      }
+
+      function updateFullscreenButtonLabel() {
+        fullscreenButton.textContent = document.fullscreenElement ? "Exit Fullscreen" : "Fullscreen";
+      }
+
+      async function toggleFullscreen() {
+        try {
+          if (document.fullscreenElement) {
+            await document.exitFullscreen();
+          } else {
+            await gameWrap.requestFullscreen();
+          }
+        } catch (error) {
+          console.error("Fullscreen toggle failed:", error);
+        }
       }
 
       function launchGame() {
@@ -139,6 +160,11 @@
       }
 
       function exitGame() {
+        if (document.fullscreenElement) {
+          document.exitFullscreen().catch(function () {
+            return;
+          });
+        }
         gameFrame.src = "about:blank";
         gamePanel.hidden = true;
         projectsGrid.hidden = false;
@@ -160,6 +186,8 @@
       });
 
       exitButton.addEventListener("click", exitGame);
+      fullscreenButton.addEventListener("click", toggleFullscreen);
+      document.addEventListener("fullscreenchange", updateFullscreenButtonLabel);
     })();
   </script>
 </body>

@@ -404,6 +404,12 @@ p {
   flex-wrap: wrap;
 }
 
+.game-controls {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
 .game-panel .section-subtitle {
   margin-top: 0.45rem;
 }
@@ -473,15 +479,6 @@ p {
 
 .reveal {
   opacity: 1;
-}
-
-.reveal-1 {
-}
-
-.reveal-2 {
-}
-
-.reveal-3 {
 }
 
 @media (max-width: 900px) {
