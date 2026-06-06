@@ -92,7 +92,13 @@
 
       <section id="rot-royale-player" class="section game-panel" hidden aria-label="Rot Royale game panel">
         <div class="game-panel-top">
-          <h2 class="section-title">Rot Royale</h2>
+          <div class="game-panel-heading">
+            <h2 class="section-title">Rot Royale</h2>
+            <label class="game-toggle" for="toggle-touch-controls">
+              <input id="toggle-touch-controls" type="checkbox" />
+              <span>Touch Controls</span>
+            </label>
+          </div>
           <div class="game-controls">
             <button id="toggle-fullscreen" class="button button-secondary" type="button">Fullscreen</button>
             <button id="exit-rot-royale" class="button button-secondary" type="button">Exit Game</button>
@@ -102,6 +108,17 @@
         <div id="rot-royale-wrap" class="game-frame-wrap">
           <iframe id="rot-royale-frame" src="about:blank" title="Rot Royale 3D game" loading="eager"
             allow="fullscreen; gamepad; autoplay" referrerpolicy="no-referrer"></iframe>
+          <div id="mobile-gamepad" class="mobile-gamepad" hidden aria-label="Mobile movement controls">
+            <div class="mobile-gamepad-cluster">
+              <button class="mobile-pad-button mobile-pad-up" type="button" data-game-key="w" aria-label="Move forward">▲</button>
+              <div class="mobile-pad-row">
+                <button class="mobile-pad-button" type="button" data-game-key="a" aria-label="Move left">◀</button>
+                <button class="mobile-pad-button" type="button" data-game-key="s" aria-label="Move backward">▼</button>
+                <button class="mobile-pad-button" type="button" data-game-key="d" aria-label="Move right">▶</button>
+              </div>
+            </div>
+            <button class="mobile-jump-button" type="button" data-game-key=" " aria-label="Jump">Jump</button>
+          </div>
         </div>
       </section>
 
@@ -137,12 +154,89 @@
       var gamePanel = document.getElementById("rot-royale-player");
       var gameFrame = document.getElementById("rot-royale-frame");
       var gameWrap = document.getElementById("rot-royale-wrap");
+      var mobileGamepad = document.getElementById("mobile-gamepad");
+      var touchControlsToggle = document.getElementById("toggle-touch-controls");
       var exitButton = document.getElementById("exit-rot-royale");
       var fullscreenButton = document.getElementById("toggle-fullscreen");
       var gameSrc = "../projects/RotRoyale/index.html";
+      var mobileButtons = mobileGamepad
+        ? Array.prototype.slice.call(mobileGamepad.querySelectorAll("[data-game-key]"))
+        : [];
+      var pressedKeys = Object.create(null);
+      var touchControlsEnabled = false;
 
       if (!projectTabs.length || !gamePanel || !gameFrame || !gameWrap || !exitButton || !fullscreenButton) {
         return;
+      }
+
+      function isMobileViewport() {
+        return window.matchMedia("(max-width: 900px)").matches || ("ontouchstart" in window);
+      }
+
+      function setMobileControlsVisibility() {
+        if (!mobileGamepad) {
+          return;
+        }
+
+        mobileGamepad.hidden = !(touchControlsEnabled && !gamePanel.hidden);
+      }
+
+      function dispatchGameKey(type, keyValue) {
+        var frameWindow = gameFrame.contentWindow;
+        var targetWindow = frameWindow || window;
+        var targetDocument = frameWindow && frameWindow.document ? frameWindow.document : document;
+        var codeMap = {
+          "w": "KeyW",
+          "a": "KeyA",
+          "s": "KeyS",
+          "d": "KeyD",
+          " ": "Space"
+        };
+        var keyMap = {
+          "w": "w",
+          "a": "a",
+          "s": "s",
+          "d": "d",
+          " ": " "
+        };
+
+        if (!codeMap[keyValue]) {
+          return;
+        }
+
+        var eventOptions = {
+          key: keyMap[keyValue],
+          code: codeMap[keyValue],
+          keyCode: keyValue === " " ? 32 : keyValue.toUpperCase().charCodeAt(0),
+          which: keyValue === " " ? 32 : keyValue.toUpperCase().charCodeAt(0),
+          bubbles: true,
+          cancelable: true
+        };
+
+        try {
+          targetDocument.dispatchEvent(new KeyboardEvent(type, eventOptions));
+          targetWindow.dispatchEvent(new KeyboardEvent(type, eventOptions));
+        } catch (error) {
+          console.error("Mobile key dispatch failed:", error);
+        }
+      }
+
+      function pressGameKey(keyValue) {
+        if (pressedKeys[keyValue]) {
+          return;
+        }
+
+        pressedKeys[keyValue] = true;
+        dispatchGameKey("keydown", keyValue);
+      }
+
+      function releaseGameKey(keyValue) {
+        if (!pressedKeys[keyValue]) {
+          return;
+        }
+
+        pressedKeys[keyValue] = false;
+        dispatchGameKey("keyup", keyValue);
       }
 
       function setActiveProject(projectName) {
@@ -159,6 +253,7 @@
         });
 
         gamePanel.hidden = projectName !== "rot-royale";
+        setMobileControlsVisibility();
 
         if (projectName === "rot-royale") {
           if (gameFrame.src !== gameSrc) {
@@ -191,9 +286,42 @@
             return;
           });
         }
+
+        Object.keys(pressedKeys).forEach(function (keyValue) {
+          releaseGameKey(keyValue);
+        });
+
         gameFrame.src = "about:blank";
         setActiveProject("promptr");
       }
+
+      if (touchControlsToggle) {
+        touchControlsToggle.addEventListener("change", function () {
+          touchControlsEnabled = touchControlsToggle.checked;
+          setMobileControlsVisibility();
+        });
+      }
+
+      mobileButtons.forEach(function (button) {
+        var keyValue = button.getAttribute("data-game-key");
+
+        function handlePress(event) {
+          event.preventDefault();
+          pressGameKey(keyValue);
+        }
+
+        function handleRelease(event) {
+          event.preventDefault();
+          releaseGameKey(keyValue);
+        }
+
+        button.addEventListener("touchstart", handlePress, { passive: false });
+        button.addEventListener("touchend", handleRelease, { passive: false });
+        button.addEventListener("touchcancel", handleRelease, { passive: false });
+        button.addEventListener("mousedown", handlePress);
+        button.addEventListener("mouseup", handleRelease);
+        button.addEventListener("mouseleave", handleRelease);
+      });
 
       projectTabs.forEach(function (tab) {
         tab.addEventListener("click", function () {
@@ -211,6 +339,7 @@
       exitButton.addEventListener("click", exitGame);
       fullscreenButton.addEventListener("click", toggleFullscreen);
       document.addEventListener("fullscreenchange", updateFullscreenButtonLabel);
+      window.addEventListener("resize", setMobileControlsVisibility);
       setActiveProject("rot-royale");
     })();
   </script>
