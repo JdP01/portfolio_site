@@ -108,6 +108,9 @@
         <div id="rot-royale-wrap" class="game-frame-wrap">
           <iframe id="rot-royale-frame" src="about:blank" title="Rot Royale 3D game" loading="eager"
             allow="fullscreen; gamepad; autoplay" referrerpolicy="no-referrer"></iframe>
+          <div id="mobile-look-zone" class="mobile-look-zone" hidden aria-label="Touch look area">
+            <div class="mobile-look-zone-label">Look</div>
+          </div>
           <div id="mobile-gamepad" class="mobile-gamepad" hidden aria-label="Mobile movement controls">
             <div class="mobile-gamepad-cluster">
               <button class="mobile-pad-button mobile-pad-up" type="button" data-game-key="w" aria-label="Move forward">▲</button>
@@ -155,6 +158,7 @@
       var gameFrame = document.getElementById("rot-royale-frame");
       var gameWrap = document.getElementById("rot-royale-wrap");
       var mobileGamepad = document.getElementById("mobile-gamepad");
+      var mobileLookZone = document.getElementById("mobile-look-zone");
       var touchControlsToggle = document.getElementById("toggle-touch-controls");
       var exitButton = document.getElementById("exit-rot-royale");
       var fullscreenButton = document.getElementById("toggle-fullscreen");
@@ -178,7 +182,12 @@
           return;
         }
 
-        mobileGamepad.hidden = !(touchControlsEnabled && !gamePanel.hidden);
+        var shouldShowControls = touchControlsEnabled && !gamePanel.hidden;
+        mobileGamepad.hidden = !shouldShowControls;
+
+        if (mobileLookZone) {
+          mobileLookZone.hidden = !shouldShowControls;
+        }
       }
 
       function dispatchGameKey(type, keyValue) {
@@ -218,6 +227,29 @@
           targetWindow.dispatchEvent(new KeyboardEvent(type, eventOptions));
         } catch (error) {
           console.error("Mobile key dispatch failed:", error);
+        }
+      }
+
+      function dispatchGameMouseMove(deltaX, deltaY) {
+        var frameWindow = gameFrame.contentWindow;
+        var targetWindow = frameWindow || window;
+        var targetDocument = frameWindow && frameWindow.document ? frameWindow.document : document;
+        var moveEventOptions = {
+          bubbles: true,
+          cancelable: true,
+          movementX: deltaX,
+          movementY: deltaY,
+          clientX: 0,
+          clientY: 0,
+          screenX: 0,
+          screenY: 0
+        };
+
+        try {
+          targetDocument.dispatchEvent(new MouseEvent("mousemove", moveEventOptions));
+          targetWindow.dispatchEvent(new MouseEvent("mousemove", moveEventOptions));
+        } catch (error) {
+          console.error("Mobile look dispatch failed:", error);
         }
       }
 
@@ -322,6 +354,66 @@
         button.addEventListener("mouseup", handleRelease);
         button.addEventListener("mouseleave", handleRelease);
       });
+
+      if (mobileLookZone) {
+        var lookPointerId = null;
+        var lastLookPoint = null;
+
+        function readTouchPoint(event) {
+          if (event.touches && event.touches.length) {
+            return event.touches[0];
+          }
+
+          if (event.changedTouches && event.changedTouches.length) {
+            return event.changedTouches[0];
+          }
+
+          return event;
+        }
+
+        function startLook(event) {
+          event.preventDefault();
+          var point = readTouchPoint(event);
+          lookPointerId = point.identifier != null ? point.identifier : "mouse";
+          lastLookPoint = { x: point.clientX, y: point.clientY };
+        }
+
+        function moveLook(event) {
+          if (lastLookPoint == null) {
+            return;
+          }
+
+          event.preventDefault();
+          var point = readTouchPoint(event);
+          var pointerId = point.identifier != null ? point.identifier : "mouse";
+
+          if (pointerId !== lookPointerId) {
+            return;
+          }
+
+          var deltaX = point.clientX - lastLookPoint.x;
+          var deltaY = point.clientY - lastLookPoint.y;
+
+          lastLookPoint = { x: point.clientX, y: point.clientY };
+
+          dispatchGameMouseMove(deltaX * 1.2, deltaY * 1.2);
+        }
+
+        function endLook(event) {
+          event.preventDefault();
+          lastLookPoint = null;
+          lookPointerId = null;
+        }
+
+        mobileLookZone.addEventListener("touchstart", startLook, { passive: false });
+        mobileLookZone.addEventListener("touchmove", moveLook, { passive: false });
+        mobileLookZone.addEventListener("touchend", endLook, { passive: false });
+        mobileLookZone.addEventListener("touchcancel", endLook, { passive: false });
+        mobileLookZone.addEventListener("mousedown", startLook);
+        mobileLookZone.addEventListener("mousemove", moveLook);
+        mobileLookZone.addEventListener("mouseup", endLook);
+        mobileLookZone.addEventListener("mouseleave", endLook);
+      }
 
       projectTabs.forEach(function (tab) {
         tab.addEventListener("click", function () {
