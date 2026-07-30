@@ -9,6 +9,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="resources/css/stylesheet.css" />
+  <script async src="https://unpkg.com/es-module-shims@1.10.0/dist/es-module-shims.js"></script>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.167.1/build/three.module.js"
+      }
+    }
+  </script>
 </head>
 <body class="home-page">
   <header class="site-header">
@@ -28,34 +36,49 @@
 
   <main>
     <div class="site-shell">
-      <section class="hero">
-        <article class="hero-card hero-card-overlay">
-          <div class="hero-card-content">
-            <p class="eyebrow">Sharp Systems. Real Execution.</p>
-            <h1>Engineering Logic into Execution</h1>
-            <p class="hero-card-copy">El Salvador to Boulder: building systems, shipping ideas, and always learning.</p>
-            <div class="cta-row">
-              <a class="button button-primary" href="views/projects.html">See Projects</a>
-              <a class="button button-secondary" href="views/resume.html">View Resume</a>
-            </div>
-          </div>
-        </article>
-      </section>
-
-      <section class="section">
-        <h2 class="section-title">What I'm into</h2>
-        <div class="focus-list">
-          <div class="focus-item">
-            <h3>Interactive work</h3>
-            <p>Building web experiences that are fun to use — games, 3D visualizations, real-time interactions. I use Three.js, Canvas, and whatever feels right for the job.</p>
-          </div>
-          <div class="focus-item">
-            <h3>Data & analytics</h3>
-            <p>Turning messy data into something useful. Forecasting, dashboards, finding what actually matters in the noise. I like connecting the dots between data and decisions.</p>
-          </div>
-          <div class="focus-item">
-            <h3>Systems & robotics</h3>
-            <p>Experimenting with AI, robotics, and autonomous systems. Interested in how things actually work in the real world, not just theory.</p>
+      <section class="section demo-section" aria-label="Graph demonstration">
+        <div class="graph-demo-shell" data-graph-demo>
+          <aside class="graph-demo-sidebar">
+            <section class="graph-demo-controls" aria-label="Graph controls">
+              <div class="graph-demo-node-control">
+                <div class="graph-demo-slider-row">
+                  <label class="graph-demo-label" for="node-count">Node Count</label>
+                  <output id="node-count-value" class="graph-demo-value" for="node-count">10</output>
+                </div>
+                <input id="node-count" type="range" min="10" max="100" step="1" value="10" />
+              </div>
+              <div class="graph-demo-path-control" aria-label="Fastest path controls">
+                <div class="graph-demo-path-grid">
+                  <div class="graph-demo-path-card">
+                    <span class="graph-demo-label">Start Node</span>
+                    <output id="path-start-node" class="graph-demo-path-value">Not selected</output>
+                  </div>
+                  <div class="graph-demo-path-card">
+                    <span class="graph-demo-label">End Node</span>
+                    <output id="path-end-node" class="graph-demo-path-value">Not selected</output>
+                  </div>
+                </div>
+                <label class="graph-demo-toggle" for="trace-enabled">
+                  <span class="graph-demo-toggle-header">
+                    <span class="graph-demo-label">Show Dijkstra Playback</span>
+                    <span class="graph-demo-toggle-switch-wrap">
+                      <input id="trace-enabled" type="checkbox" />
+                      <span class="graph-demo-toggle-switch" aria-hidden="true"></span>
+                    </span>
+                  </span>
+                  <span class="graph-demo-toggle-note" hidden>Playback is best kept under 30 nodes on slower machines.</span>
+                </label>
+                <button id="run-path" type="button" class="graph-demo-run-button" disabled>Run Dijkstra</button>
+                <div id="graph-demo-playback-control" class="graph-demo-playback-control" aria-label="Dijkstra playback controls">
+                  <div class="graph-demo-playback-buttons">
+                    <button id="trace-play-pause" type="button" class="graph-demo-trace-button graph-demo-trace-button-primary" disabled>Play</button>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </aside>
+          <div class="graph-demo-scene-panel">
+            <div id="scene-root" class="graph-demo-scene" aria-label="3D graph visualization"></div>
           </div>
         </div>
       </section>
@@ -78,5 +101,8 @@
   <footer class="site-footer">
     <div class="site-shell">Juan Pleitez Portfolio </div>
   </footer>
+  <script src="graph_viz/dijkstras/viewer.js"></script>
+  <script src="graph_viz/dijkstras/translate.js"></script>
+  <script type="module" src="resources/js/home-graph-demo.js"></script>
 </body>
 </html>

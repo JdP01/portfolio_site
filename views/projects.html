@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="../resources/css/stylesheet.css" />
 </head>
 
-<body>
+<body class="projects-page">
   <header class="site-header">
     <div class="site-shell top-nav">
       <a class="brand" href="../index.html" aria-label="Go to homepage">
@@ -31,29 +31,39 @@
     </div>
   </header>
 
-  <main>
+  <div class="project-subheader">
     <div class="site-shell">
-      <section class="reveal reveal-1">
-        <h1>Applied Projects</h1>
-        <p class="lead">From multiplayer architecture to web development & AI integration, these are builds where I
-          learn by
-          deploying, debugging, and iterating.</p>
+      <div class="project-subnav" role="tablist" aria-label="Project views">
+        <button class="project-subtab active" type="button" data-project-tab="rot-royale" aria-selected="true">
+          Rot Royale
+        </button>
+        <button class="project-subtab" type="button" data-project-tab="promptr" aria-selected="false">
+          Promptr
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <main class="projects-main">
+      <section id="rot-royale-player" class="section game-panel" hidden aria-label="Rot Royale game panel">
+        <div class="game-panel-top">
+          <div class="game-panel-heading">
+            <h2 class="section-title">Rot Royale</h2>
+          </div>
+          <div class="game-controls">
+            <button id="toggle-fullscreen" class="button button-secondary" type="button">Fullscreen</button>
+            <button id="exit-rot-royale" class="button button-secondary" type="button">Exit Game</button>
+          </div>
+        </div>
+        <p class="section-subtitle">Embedded build from your local projects/RotRoyale dist output.</p>
+        <div id="rot-royale-wrap" class="game-frame-wrap">
+          <iframe id="rot-royale-frame" src="about:blank" title="Rot Royale 3D game" loading="eager"
+            allow="fullscreen; gamepad; autoplay" referrerpolicy="no-referrer"></iframe>
+        </div>
       </section>
 
-      <section class="section reveal reveal-2" aria-label="Project navigation and detail views">
-        <div class="project-subnav" role="tablist" aria-label="Project views">
-          <button class="project-subtab active" type="button" data-project-tab="rot-royale" aria-selected="true">
-            Rot Royale
-          </button>
-          <button class="project-subtab" type="button" data-project-tab="promptr" aria-selected="false">
-            Promptr
-          </button>
-          <button class="project-subtab" type="button" data-project-tab="bomb-lab" aria-selected="false">
-            Bomb Lab + Data Lab
-          </button>
-        </div>
-
-        <section id="project-page-promptr" class="project-subpage" hidden aria-label="Promptr details">
+      <section id="project-page-promptr" class="project-subpage" hidden aria-label="Promptr details">
+        <div class="site-shell project-subpage-shell">
           <div class="project-subpage-hero">
             <div>
               <h2 class="section-title">Promptr</h2>
@@ -67,61 +77,17 @@
               <p class="project-copy">Promptr explores practical AI UX through a browser-first workflow: capturing user intent quickly, improving prompts in-place, and shipping a lightweight tool people can actually use.</p>
               <a class="button button-primary" href="https://promptrlabs.com" target="_blank" rel="noopener noreferrer">Visit Promptr</a>
             </div>
-            <img class="project-cover" src="../resources/img/promptrLogo.jpg" alt="Promptr logo" />
-          </div>
-        </section>
-
-        <section id="project-page-bomb-lab" class="project-subpage" hidden aria-label="Bomb Lab and Data Lab details">
-          <div class="project-subpage-hero">
-            <div>
-              <h2 class="section-title">Bomb Lab + Data Lab</h2>
-              <p class="section-subtitle">Low-level systems work using Linux and GDB to reason through assembly, binaries, and edge-case behavior.</p>
-              <div class="tag-row">
-                <span class="tag">C</span>
-                <span class="tag">Assembly</span>
-                <span class="tag">Linux</span>
-                <span class="tag">GDB</span>
-              </div>
-              <p class="project-copy">This work focused on reading machine-level behavior directly: disassembling binaries, tracing control flow, and validating assumptions through tooling instead of guesswork.</p>
-              <a class="button button-secondary" href="../views/resume.html">View Related Resume Work</a>
-            </div>
-            <img class="project-cover" src="../resources/img/bombLab.png" alt="Assembly and debugging project visual" />
-          </div>
-        </section>
-      </section>
-
-      <section id="rot-royale-player" class="section game-panel" hidden aria-label="Rot Royale game panel">
-        <div class="game-panel-top">
-          <div class="game-panel-heading">
-            <h2 class="section-title">Rot Royale</h2>
-            <label class="game-toggle" for="toggle-touch-controls">
-              <input id="toggle-touch-controls" type="checkbox" />
-              <span>Touch Controls</span>
-            </label>
-          </div>
-          <div class="game-controls">
-            <button id="toggle-fullscreen" class="button button-secondary" type="button">Fullscreen</button>
-            <button id="exit-rot-royale" class="button button-secondary" type="button">Exit Game</button>
-          </div>
-        </div>
-        <p class="section-subtitle">Embedded build from your local projects/RotRoyale dist output.</p>
-        <div id="rot-royale-wrap" class="game-frame-wrap">
-          <iframe id="rot-royale-frame" src="about:blank" title="Rot Royale 3D game" loading="eager"
-            allow="fullscreen; gamepad; autoplay" referrerpolicy="no-referrer"></iframe>
-          <div id="mobile-gamepad" class="mobile-gamepad" hidden aria-label="Mobile movement controls">
-            <div class="mobile-gamepad-cluster">
-              <button class="mobile-pad-button mobile-pad-up" type="button" data-game-key="w" aria-label="Move forward">▲</button>
-              <div class="mobile-pad-row">
-                <button class="mobile-pad-button" type="button" data-game-key="a" aria-label="Move left">◀</button>
-                <button class="mobile-pad-button" type="button" data-game-key="s" aria-label="Move backward">▼</button>
-                <button class="mobile-pad-button" type="button" data-game-key="d" aria-label="Move right">▶</button>
-              </div>
-            </div>
-            <button class="mobile-jump-button" type="button" data-game-key=" " aria-label="Jump">Jump</button>
+            <a class="project-site-preview-link" href="https://promptrlabs.com" target="_blank" rel="noopener noreferrer" aria-label="Open Promptr site preview">
+              <span class="project-site-preview">
+                <img class="project-site-preview-image" src="../resources/img/promptr-preview.png" alt="Preview of the Promptr landing page" />
+              </span>
+              <span class="project-site-preview-caption">Open live site</span>
+            </a>
           </div>
         </div>
       </section>
 
+    <div class="site-shell">
       <section class="contact-panel reveal reveal-3" aria-label="Contact information">
         <div>
           <h2 class="section-title">Collaborate With Me</h2>
@@ -148,96 +114,17 @@
     (function () {
       var projectTabs = Array.prototype.slice.call(document.querySelectorAll("[data-project-tab]"));
       var projectPages = {
-        "promptr": document.getElementById("project-page-promptr"),
-        "bomb-lab": document.getElementById("project-page-bomb-lab")
+        "promptr": document.getElementById("project-page-promptr")
       };
       var gamePanel = document.getElementById("rot-royale-player");
       var gameFrame = document.getElementById("rot-royale-frame");
       var gameWrap = document.getElementById("rot-royale-wrap");
-      var mobileGamepad = document.getElementById("mobile-gamepad");
-      var touchControlsToggle = document.getElementById("toggle-touch-controls");
       var exitButton = document.getElementById("exit-rot-royale");
       var fullscreenButton = document.getElementById("toggle-fullscreen");
       var gameSrc = "../projects/RotRoyale/index.html";
-      var mobileButtons = mobileGamepad
-        ? Array.prototype.slice.call(mobileGamepad.querySelectorAll("[data-game-key]"))
-        : [];
-      var pressedKeys = Object.create(null);
-      var touchControlsEnabled = false;
 
       if (!projectTabs.length || !gamePanel || !gameFrame || !gameWrap || !exitButton || !fullscreenButton) {
         return;
-      }
-
-      function isMobileViewport() {
-        return window.matchMedia("(max-width: 900px)").matches || ("ontouchstart" in window);
-      }
-
-      function setMobileControlsVisibility() {
-        if (!mobileGamepad) {
-          return;
-        }
-
-        var shouldShowControls = touchControlsEnabled && !gamePanel.hidden;
-        mobileGamepad.hidden = !shouldShowControls;
-      }
-
-      function dispatchGameKey(type, keyValue) {
-        var frameWindow = gameFrame.contentWindow;
-        var targetWindow = frameWindow || window;
-        var targetDocument = frameWindow && frameWindow.document ? frameWindow.document : document;
-        var codeMap = {
-          "w": "KeyW",
-          "a": "KeyA",
-          "s": "KeyS",
-          "d": "KeyD",
-          " ": "Space"
-        };
-        var keyMap = {
-          "w": "w",
-          "a": "a",
-          "s": "s",
-          "d": "d",
-          " ": " "
-        };
-
-        if (!codeMap[keyValue]) {
-          return;
-        }
-
-        var eventOptions = {
-          key: keyMap[keyValue],
-          code: codeMap[keyValue],
-          keyCode: keyValue === " " ? 32 : keyValue.toUpperCase().charCodeAt(0),
-          which: keyValue === " " ? 32 : keyValue.toUpperCase().charCodeAt(0),
-          bubbles: true,
-          cancelable: true
-        };
-
-        try {
-          targetDocument.dispatchEvent(new KeyboardEvent(type, eventOptions));
-          targetWindow.dispatchEvent(new KeyboardEvent(type, eventOptions));
-        } catch (error) {
-          console.error("Mobile key dispatch failed:", error);
-        }
-      }
-
-      function pressGameKey(keyValue) {
-        if (pressedKeys[keyValue]) {
-          return;
-        }
-
-        pressedKeys[keyValue] = true;
-        dispatchGameKey("keydown", keyValue);
-      }
-
-      function releaseGameKey(keyValue) {
-        if (!pressedKeys[keyValue]) {
-          return;
-        }
-
-        pressedKeys[keyValue] = false;
-        dispatchGameKey("keyup", keyValue);
       }
 
       function setActiveProject(projectName) {
@@ -254,7 +141,6 @@
         });
 
         gamePanel.hidden = projectName !== "rot-royale";
-        setMobileControlsVisibility();
 
         if (projectName === "rot-royale") {
           if (gameFrame.src !== gameSrc) {
@@ -288,41 +174,9 @@
           });
         }
 
-        Object.keys(pressedKeys).forEach(function (keyValue) {
-          releaseGameKey(keyValue);
-        });
-
         gameFrame.src = "about:blank";
         setActiveProject("promptr");
       }
-
-      if (touchControlsToggle) {
-        touchControlsToggle.addEventListener("change", function () {
-          touchControlsEnabled = touchControlsToggle.checked;
-          setMobileControlsVisibility();
-        });
-      }
-
-      mobileButtons.forEach(function (button) {
-        var keyValue = button.getAttribute("data-game-key");
-
-        function handlePress(event) {
-          event.preventDefault();
-          pressGameKey(keyValue);
-        }
-
-        function handleRelease(event) {
-          event.preventDefault();
-          releaseGameKey(keyValue);
-        }
-
-        button.addEventListener("touchstart", handlePress, { passive: false });
-        button.addEventListener("touchend", handleRelease, { passive: false });
-        button.addEventListener("touchcancel", handleRelease, { passive: false });
-        button.addEventListener("mousedown", handlePress);
-        button.addEventListener("mouseup", handleRelease);
-        button.addEventListener("mouseleave", handleRelease);
-      });
 
       projectTabs.forEach(function (tab) {
         tab.addEventListener("click", function () {
@@ -340,7 +194,6 @@
       exitButton.addEventListener("click", exitGame);
       fullscreenButton.addEventListener("click", toggleFullscreen);
       document.addEventListener("fullscreenchange", updateFullscreenButtonLabel);
-      window.addEventListener("resize", setMobileControlsVisibility);
       setActiveProject("rot-royale");
     })();
   </script>
