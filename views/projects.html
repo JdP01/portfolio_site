@@ -55,7 +55,7 @@
             <button id="exit-rot-royale" class="button button-secondary" type="button">Exit Game</button>
           </div>
         </div>
-        <p class="section-subtitle">Embedded build from your local projects/RotRoyale dist output.</p>
+        <p class="section-subtitle">Three.js rendering + Rapier physics engine</p>
         <div id="rot-royale-wrap" class="game-frame-wrap">
           <iframe id="rot-royale-frame" src="about:blank" title="Rot Royale 3D game" loading="eager"
             allow="fullscreen; gamepad; autoplay" referrerpolicy="no-referrer"></iframe>
@@ -65,24 +65,37 @@
       <section id="project-page-promptr" class="project-subpage" hidden aria-label="Promptr details">
         <div class="site-shell project-subpage-shell">
           <div class="project-subpage-hero">
-            <div>
+            <div class="promptr-copy-stack">
+              <p class="eyebrow">Featured Product</p>
               <h2 class="section-title">Promptr</h2>
-              <p class="section-subtitle">AI prompt engineering chrome extension focused on helping users refine prompt quality and usability.</p>
+              <p class="section-subtitle">AI prompt engineering chrome extension focused on helping users refine prompt quality and usability.</p>  
               <div class="tag-row">
                 <span class="tag">AI Tools</span>
                 <span class="tag">Prompting</span>
                 <span class="tag">Product</span>
                 <span class="tag">Web</span>
               </div>
-              <p class="project-copy">Promptr explores practical AI UX through a browser-first workflow: capturing user intent quickly, improving prompts in-place, and shipping a lightweight tool people can actually use.</p>
-              <a class="button button-primary" href="https://promptrlabs.com" target="_blank" rel="noopener noreferrer">Visit Promptr</a>
+              <div class="promptr-metrics" aria-label="Promptr highlights">
+                <div class="promptr-metric">
+                  <span class="promptr-metric-label">Type</span>
+                  <strong>Chrome extension</strong>
+                </div>
+                <div class="promptr-metric">
+                  <span class="promptr-metric-label">Stack</span>
+                  <strong>TypeScript, Supabase</strong>
+                </div>
+                <div class="promptr-metric">
+                  <span class="promptr-metric-label">Launch</span>
+                  <strong>2025 venture</strong>
+                </div>
+              </div>
             </div>
-            <a class="project-site-preview-link" href="https://promptrlabs.com" target="_blank" rel="noopener noreferrer" aria-label="Open Promptr site preview">
-              <span class="project-site-preview">
-                <img class="project-site-preview-image" src="../resources/img/promptr-preview.png" alt="Preview of the Promptr landing page" />
-              </span>
-              <span class="project-site-preview-caption">Open live site</span>
-            </a>
+            <div class="promptr-slideshow" data-promptr-slideshow aria-label="Promptr image slideshow" role="button" tabindex="0">
+              <img class="promptr-slideshow-image is-active" src="../resources/img/promptr_images/promptr2_1280x800.png" alt="Promptr screenshot 2" />
+              <img class="promptr-slideshow-image" src="../resources/img/promptr_images/promptr3_1280x800.png" alt="Promptr screenshot 3" />
+              <img class="promptr-slideshow-image" src="../resources/img/promptr_images/promptr4_1280x800.png" alt="Promptr screenshot 4" />
+              <img class="promptr-slideshow-image" src="../resources/img/promptr_images/propmtr5.png" alt="Promptr screenshot 5" />
+            </div>
           </div>
         </div>
       </section>
@@ -121,10 +134,48 @@
       var gameWrap = document.getElementById("rot-royale-wrap");
       var exitButton = document.getElementById("exit-rot-royale");
       var fullscreenButton = document.getElementById("toggle-fullscreen");
+      var slideshow = document.querySelector("[data-promptr-slideshow]");
       var gameSrc = "../projects/RotRoyale/index.html";
+      var slideImages = slideshow ? Array.prototype.slice.call(slideshow.querySelectorAll(".promptr-slideshow-image")) : [];
+      var slideIndex = 0;
+      var slideshowTimer = null;
 
       if (!projectTabs.length || !gamePanel || !gameFrame || !gameWrap || !exitButton || !fullscreenButton) {
         return;
+      }
+
+      function showPromptrSlide(index) {
+        if (!slideImages.length) {
+          return;
+        }
+
+        slideIndex = (index + slideImages.length) % slideImages.length;
+
+        slideImages.forEach(function (image, imageIndex) {
+          image.classList.toggle("is-active", imageIndex === slideIndex);
+        });
+      }
+
+      function startPromptrSlideshow() {
+        if (!slideImages.length || slideshowTimer) {
+          return;
+        }
+
+        showPromptrSlide(0);
+        slideshowTimer = window.setInterval(function () {
+          showPromptrSlide(slideIndex + 1);
+        }, 3200);
+      }
+
+      function stopPromptrSlideshow() {
+        if (slideshowTimer) {
+          window.clearInterval(slideshowTimer);
+          slideshowTimer = null;
+        }
+      }
+
+      function advancePromptrSlideshow() {
+        showPromptrSlide(slideIndex + 1);
       }
 
       function setActiveProject(projectName) {
@@ -139,6 +190,14 @@
             projectPages[key].hidden = key !== projectName;
           }
         });
+
+        if (slideshow) {
+          if (projectName === "promptr") {
+            startPromptrSlideshow();
+          } else {
+            stopPromptrSlideshow();
+          }
+        }
 
         gamePanel.hidden = projectName !== "rot-royale";
 
@@ -193,6 +252,15 @@
 
       exitButton.addEventListener("click", exitGame);
       fullscreenButton.addEventListener("click", toggleFullscreen);
+      if (slideshow) {
+        slideshow.addEventListener("click", advancePromptrSlideshow);
+        slideshow.addEventListener("keydown", function (event) {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            advancePromptrSlideshow();
+          }
+        });
+      }
       document.addEventListener("fullscreenchange", updateFullscreenButtonLabel);
       setActiveProject("rot-royale");
     })();

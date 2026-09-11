@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../resources/css/stylesheet.css" />
 </head>
-<body>
+<body class="resume-page">
   <header class="site-header">
     <div class="site-shell top-nav">
       <a class="brand" href="../index.html" aria-label="Go to homepage">
@@ -27,74 +27,17 @@
   </header>
 
   <main>
-    <div class="site-shell">
-      <section class="reveal reveal-1">
-        <p class="eyebrow">Resume Snapshot</p>
-        <h1>Juan D. Pleitez</h1>
-        <p class="lead">Business Analytics and Information Management double major with Computer Science integration, focused on building practical software systems.</p>
-      </section>
-
-      <section class="section grid grid-2 reveal reveal-2">
-        <article class="card">
-          <h3>Experience</h3>
-          <div class="timeline">
-            <div class="timeline-item">
-              <time>2024-2025 | ESSESA</time>
-              <p>Administrative Assistant Intern in commercial real estate development, connecting site activity, AutoCAD updates, and cost forecasting.</p>
-            </div>
-            <div class="timeline-item">
-              <time>2021-2022 | The Home Depot</time>
-              <p>Sales Associate in lumber and construction sales, supporting customer operations and inventory flow.</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="card">
-          <h3>Education</h3>
-          <div class="timeline">
-            <div class="timeline-item">
-              <time>2022-Present</time>
-              <p>University of Colorado Boulder, Leeds School of Business: BA in Business Analytics, BA in Information Management, and CS Integration Certificate.</p>
-            </div>
-          </div>
-          <div class="tag-row">
-            <span class="tag">Analytics</span>
-            <span class="tag">Information Systems</span>
-            <span class="tag">Computer Science</span>
-          </div>
-        </article>
-      </section>
-
-      <section class="section grid grid-2 reveal reveal-3">
-        <article class="card">
-          <h3>Technical Skills</h3>
-          <p>C++, Python, Go, JavaScript, React, Three.js, SQL, PostgreSQL, REST APIs, Git, Linux.</p>
-          <h3 style="margin-top: 1rem;">Business And Analytics Tools</h3>
-          <p>SAP S/4 HANA, SAP Fiori, SAP Analytics Cloud, DataRobot, Microsoft Excel.</p>
-        </article>
-        <article class="card">
-          <h3>Current Focus</h3>
-          <p>Building multiplayer infrastructure, performance-oriented frontend experiences, and AI-assisted product workflows.</p>
-          <div class="cta-row">
-            <a class="button button-primary" href="projects.html">View Project Work</a>
-          </div>
-          <h3 style="margin-top: 1rem;">Languages</h3>
-          <p>English, Spanish</p>
-        </article>
-      </section>
-
-      <section class="contact-panel" aria-label="Contact information">
-        <div>
-          <h2 class="section-title">Contact</h2>
-          <p class="section-subtitle">Open to internships, collaboration, and product-minded engineering opportunities.</p>
-        </div>
-        <ul class="contact-list">
-          <li>Email: <a href="mailto:juandipleitez04@gmail.com">juandipleitez04@gmail.com</a></li>
-          <li>Phone: <a href="tel:+19132495117">(913) 249-5117</a></li>
-          <li>GitHub: <a href="https://github.com/JdP01" target="_blank" rel="noopener noreferrer">@JdP01</a></li>
-          <li>LinkedIn: <a href="https://www.linkedin.com/in/juan-pleitez-93bb0727a" target="_blank" rel="noopener noreferrer">Juan Pleitez</a></li>
-        </ul>
-      </section>
+    <section class="resume-pdf-shell site-shell" aria-label="Resume PDF">
+      <iframe
+        class="resume-pdf-frame"
+        src="../resources/Juan_Pleitez_Resume_SWE.pdf"
+        title="Juan Pleitez resume PDF"
+        loading="eager"
+      ></iframe>
+      <p class="resume-pdf-fallback">
+        If the PDF does not load, open it directly from <a href="../resources/Juan_Pleitez_Resume_SWE.pdf">resources/Juan_Pleitez_Resume_SWE.pdf</a>.
+      </p>
+    </section>
     </div>
   </main>
 

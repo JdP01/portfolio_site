@@ -46,6 +46,42 @@ body {
   background: #000000;
 }
 
+.resume-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.resume-page main {
+  flex: 1;
+  display: flex;
+  padding: 0;
+}
+
+.resume-pdf-shell {
+  flex: 1;
+  display: grid;
+  gap: 0.85rem;
+  padding: 1rem 0 1.35rem;
+}
+
+.resume-pdf-frame {
+  width: 100%;
+  min-height: calc(100vh - 188px);
+  height: calc(100vh - 188px);
+  border: 1px solid var(--line);
+  background: #000000;
+  box-shadow: var(--shadow-tight), 0 24px 44px rgba(0, 0, 0, 0.48);
+}
+
+.resume-pdf-fallback {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.resume-pdf-fallback a {
+  color: var(--text);
+}
+
 .home-page::before,
 .home-page::after {
   display: none;
@@ -1002,11 +1038,94 @@ p {
   align-items: center;
 }
 
+#project-page-promptr .project-subpage-hero {
+  grid-template-columns: 1fr;
+  align-items: stretch;
+}
+
 .project-copy {
   margin-top: 1rem;
   margin-bottom: 1rem;
   color: var(--muted);
   max-width: 60ch;
+}
+
+.promptr-copy-stack {
+  display: grid;
+  gap: 0.45rem;
+  align-content: start;
+}
+
+.promptr-copy-stack .eyebrow {
+  margin-bottom: 0.25rem;
+}
+
+.promptr-copy-stack .section-title {
+  margin-bottom: 0.25rem;
+}
+
+.promptr-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.35rem;
+}
+
+.promptr-metric {
+  display: grid;
+  gap: 0.18rem;
+  padding: 0.78rem 0.82rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.promptr-metric-label {
+  color: var(--brand-2);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.promptr-metric strong {
+  color: var(--text);
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.resume-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.resume-hero-panel {
+  display: grid;
+  align-content: start;
+  gap: 0.75rem;
+  padding: 1.1rem 1.15rem;
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.08), transparent 34%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+  box-shadow: var(--shadow-tight), 0 20px 40px rgba(0, 0, 0, 0.48);
+}
+
+.resume-hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--brand-2);
+  font-size: 0.76rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.resume-hero-panel p {
+  color: var(--muted);
+  max-width: 34ch;
 }
 
 .project-site-preview {
@@ -1068,6 +1187,60 @@ p {
 .project-site-preview-caption::after {
   content: "↗";
   font-size: 0.9rem;
+}
+
+.promptr-slideshow {
+  position: relative;
+  margin-top: 0.8rem;
+  width: 100%;
+  min-height: min(72vh, 760px);
+  height: min(72vh, 760px);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.08), transparent 32%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015)),
+    #000000;
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.45);
+}
+
+.promptr-slideshow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.44)),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.22), transparent 45%, rgba(0, 0, 0, 0.14));
+}
+
+.promptr-slideshow-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center top;
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 500ms ease, transform 1000ms ease;
+}
+
+.promptr-slideshow-image.is-active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 2;
+}
+
+.promptr-slideshow {
+  cursor: pointer;
+}
+
+.promptr-slideshow:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
 }
 
 .timeline {
@@ -1261,10 +1434,6 @@ p {
     flex-direction: column;
   }
 
-  .graph-demo-path-grid {
-    grid-template-columns: 1fr;
-  }
-
   .graph-demo-toggle {
     align-items: start;
   }
@@ -1273,24 +1442,27 @@ p {
     grid-template-columns: 1fr;
   }
 
-  .graph-demo-summary {
-    justify-self: start;
-    text-align: left;
-    max-width: none;
-  }
-
   .graph-demo-scene {
     min-height: 52vh;
     height: 56vh;
     width: 100%;
   }
 
-  .hero,
-  .project-subpage-hero,
+  #project-page-promptr .project-subpage-hero,
+  .resume-hero,
   .contact-panel,
   .grid-3,
   .grid-2 {
     grid-template-columns: 1fr;
+  }
+
+  .promptr-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .promptr-slideshow {
+    height: min(56vh, 580px);
+    min-height: 56vh;
   }
 
   .top-nav {
@@ -1362,5 +1534,4 @@ p {
     height: 52px;
     padding: 0 0.95rem;
   }
-
 }
