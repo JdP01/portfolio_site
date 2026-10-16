@@ -1,7 +1,6 @@
 import * as THREE from "three";
 
-const MIN_NODE_COUNT = 10;
-const MAX_NODE_COUNT = 100;
+const FIXED_NODE_COUNT = 50;
 const AUTO_SPIN_SPEED = 0.18;
 const AUTO_SPIN_RESUME_DELAY_MS = 2400;
 const AUTO_SPIN_RAMP_MS = 1800;
@@ -337,8 +336,6 @@ function createLabelSprite(text, color = "rgba(255, 255, 255, 1)") {
 
 function initGraphDemo(sectionRoot) {
   const sceneRoot = sectionRoot.querySelector("#scene-root");
-  const nodeCountSlider = sectionRoot.querySelector("#node-count");
-  const nodeCountValue = sectionRoot.querySelector("#node-count-value");
   const pathStartNodeValue = sectionRoot.querySelector("#path-start-node");
   const pathEndNodeValue = sectionRoot.querySelector("#path-end-node");
   const runPathButton = sectionRoot.querySelector("#run-path");
@@ -347,7 +344,7 @@ function initGraphDemo(sectionRoot) {
   const playbackControl = sectionRoot.querySelector("#graph-demo-playback-control");
   const tracePlayPauseButton = sectionRoot.querySelector("#trace-play-pause");
 
-  if (!(sceneRoot instanceof HTMLDivElement) || !(nodeCountSlider instanceof HTMLInputElement) || !(nodeCountValue instanceof HTMLOutputElement) || !(pathStartNodeValue instanceof HTMLOutputElement) || !(pathEndNodeValue instanceof HTMLOutputElement) || !(runPathButton instanceof HTMLButtonElement) || !(traceEnabledToggle instanceof HTMLInputElement) || !(traceToggleNote instanceof HTMLSpanElement) || !(playbackControl instanceof HTMLDivElement) || !(tracePlayPauseButton instanceof HTMLButtonElement)) {
+  if (!sceneRoot || !pathStartNodeValue || !pathEndNodeValue || !runPathButton || !traceEnabledToggle || !traceToggleNote || !playbackControl || !tracePlayPauseButton) {
     throw new Error("Graph demo markup is incomplete.");
   }
 
@@ -698,7 +695,6 @@ function initGraphDemo(sectionRoot) {
       graphGroup.add(weightLabel);
     }
 
-    nodeCountValue.textContent = String(graphState.nodeRecords.length);
   }
 
   function syncGraphAndRender() {
@@ -812,7 +808,6 @@ function initGraphDemo(sectionRoot) {
     dragState.active = false;
     sceneRoot.classList.remove("is-dragging");
   });
-  nodeCountSlider.addEventListener("input", (event) => replaceGraph(THREE.MathUtils.clamp(Number(event.currentTarget.value), MIN_NODE_COUNT, MAX_NODE_COUNT)));
   runPathButton.addEventListener("click", runSelectedPath);
   traceEnabledToggle.addEventListener("change", (event) => {
     if (event.currentTarget.checked) {
@@ -844,7 +839,7 @@ function initGraphDemo(sectionRoot) {
   });
 
   resizeScene();
-  replaceGraph(MIN_NODE_COUNT, true);
+  replaceGraph(FIXED_NODE_COUNT);
 
   if (getDijkstrasBridge()) {
     syncGraphAndRender();

@@ -1,0 +1,5 @@
+Behind Google maps, warehouse logistics, flight routing, and much more, lies one of the most essential and revolutionary algorithms ever invented.
+
+Edsger Dijkstra first proposed this algorithm in 1956. Built on foundational concepts in graph theory, it uses a greedy approach to find the fastest path possible to a node with high efficiency.
+
+Experiment with my graph by clicking any two nodes!

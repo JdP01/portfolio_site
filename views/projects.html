@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="../resources/css/stylesheet.css" />
 </head>
@@ -19,7 +19,6 @@
   <header class="site-header">
     <div class="site-shell top-nav">
       <a class="brand" href="../index.html" aria-label="Go to homepage">
-        <span class="brand-mark">JP</span>
         <span class="brand-text">Juan Pleitez</span>
       </a>
       <ul class="nav-links">
@@ -45,21 +44,9 @@
   </div>
 
   <main class="projects-main">
-      <section id="rot-royale-player" class="section game-panel" hidden aria-label="Rot Royale game panel">
-        <div class="game-panel-top">
-          <div class="game-panel-heading">
-            <h2 class="section-title">Rot Royale</h2>
-          </div>
-          <div class="game-controls">
-            <button id="toggle-fullscreen" class="button button-secondary" type="button">Fullscreen</button>
-            <button id="exit-rot-royale" class="button button-secondary" type="button">Exit Game</button>
-          </div>
-        </div>
-        <p class="section-subtitle">Three.js rendering + Rapier physics engine</p>
-        <div id="rot-royale-wrap" class="game-frame-wrap">
-          <iframe id="rot-royale-frame" src="about:blank" title="Rot Royale 3D game" loading="eager"
-            allow="fullscreen; gamepad; autoplay" referrerpolicy="no-referrer"></iframe>
-        </div>
+      <section id="rot-royale-site" class="section external-project-panel" aria-label="Rot Royale website">
+        <iframe class="external-project-frame" src="https://www.rotroyale.com" title="Rot Royale website" loading="eager"
+          allow="fullscreen" referrerpolicy="strict-origin-when-cross-origin"></iframe>
       </section>
 
       <section id="project-page-promptr" class="project-subpage" hidden aria-label="Promptr details">
@@ -125,20 +112,15 @@
     (function () {
       var projectTabs = Array.prototype.slice.call(document.querySelectorAll("[data-project-tab]"));
       var projectPages = {
+        "rot-royale": document.getElementById("rot-royale-site"),
         "promptr": document.getElementById("project-page-promptr")
       };
-      var gamePanel = document.getElementById("rot-royale-player");
-      var gameFrame = document.getElementById("rot-royale-frame");
-      var gameWrap = document.getElementById("rot-royale-wrap");
-      var exitButton = document.getElementById("exit-rot-royale");
-      var fullscreenButton = document.getElementById("toggle-fullscreen");
       var slideshow = document.querySelector("[data-promptr-slideshow]");
-      var gameSrc = "../projects/RotRoyale/index.html";
       var slideImages = slideshow ? Array.prototype.slice.call(slideshow.querySelectorAll(".promptr-slideshow-image")) : [];
       var slideIndex = 0;
       var slideshowTimer = null;
 
-      if (!projectTabs.length || !gamePanel || !gameFrame || !gameWrap || !exitButton || !fullscreenButton) {
+      if (!projectTabs.length || !projectPages["rot-royale"] || !projectPages.promptr) {
         return;
       }
 
@@ -197,42 +179,6 @@
           }
         }
 
-        gamePanel.hidden = projectName !== "rot-royale";
-
-        if (projectName === "rot-royale") {
-          if (gameFrame.src !== gameSrc) {
-            gameFrame.src = gameSrc;
-          }
-        } else {
-          gameFrame.src = "about:blank";
-        }
-      }
-
-      function updateFullscreenButtonLabel() {
-        fullscreenButton.textContent = document.fullscreenElement ? "Exit Fullscreen" : "Fullscreen";
-      }
-
-      async function toggleFullscreen() {
-        try {
-          if (document.fullscreenElement) {
-            await document.exitFullscreen();
-          } else {
-            await gameWrap.requestFullscreen();
-          }
-        } catch (error) {
-          console.error("Fullscreen toggle failed:", error);
-        }
-      }
-
-      function exitGame() {
-        if (document.fullscreenElement) {
-          document.exitFullscreen().catch(function () {
-            return;
-          });
-        }
-
-        gameFrame.src = "about:blank";
-        setActiveProject("promptr");
       }
 
       projectTabs.forEach(function (tab) {
@@ -248,8 +194,6 @@
         });
       });
 
-      exitButton.addEventListener("click", exitGame);
-      fullscreenButton.addEventListener("click", toggleFullscreen);
       if (slideshow) {
         slideshow.addEventListener("click", advancePromptrSlideshow);
         slideshow.addEventListener("keydown", function (event) {
@@ -259,7 +203,6 @@
           }
         });
       }
-      document.addEventListener("fullscreenchange", updateFullscreenButtonLabel);
       setActiveProject("rot-royale");
     })();
   </script>

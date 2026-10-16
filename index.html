@@ -7,7 +7,7 @@
   <meta name="description" content="Portfolio of Juan Pleitez, blending business analytics, software engineering, and creative technology." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="resources/css/stylesheet.css" />
   <script async src="https://unpkg.com/es-module-shims@1.10.0/dist/es-module-shims.js"></script>
   <script type="importmap">
@@ -22,7 +22,6 @@
   <header class="site-header">
     <div class="site-shell top-nav">
       <a class="brand" href="index.html" aria-label="Go to homepage">
-        <span class="brand-mark">JP</span>
         <span class="brand-text">Juan Pleitez</span>
       </a>
       <ul class="nav-links">
@@ -39,25 +38,18 @@
       <section class="section demo-section" aria-label="Graph demonstration">
         <div class="graph-demo-shell" data-graph-demo>
           <aside class="graph-demo-sidebar">
+            <p class="eyebrow">Interactive study</p>
+            <h1>Find the shortest path.</h1>
+            <p class="graph-demo-copy">Behind Google maps, warehouse logistics, flight routing, and much more, lies one of the most essential and revolutionary algorithms ever invented.<br><br>Edsger Dijkstra first proposed this algorithm in 1956. Built on foundational concepts in graph theory, it uses a greedy approach to find the fastest path possible to a node with high efficiency.</p>
+            <p class="graph-demo-note">50 nodes · live 3D graph · weighted paths</p>
+          </aside>
+          <div class="graph-demo-scene-panel">
             <section class="graph-demo-controls" aria-label="Graph controls">
-              <div class="graph-demo-node-control">
-                <div class="graph-demo-slider-row">
-                  <label class="graph-demo-label" for="node-count">Node Count</label>
-                  <output id="node-count-value" class="graph-demo-value" for="node-count">10</output>
-                </div>
-                <input id="node-count" type="range" min="10" max="100" step="1" value="10" />
+              <div class="graph-demo-state" aria-live="polite">
+                <output id="path-start-node">Not selected</output>
+                <output id="path-end-node">Not selected</output>
               </div>
               <div class="graph-demo-path-control" aria-label="Fastest path controls">
-                <div class="graph-demo-path-grid">
-                  <div class="graph-demo-path-card">
-                    <span class="graph-demo-label">Start Node</span>
-                    <output id="path-start-node" class="graph-demo-path-value">Not selected</output>
-                  </div>
-                  <div class="graph-demo-path-card">
-                    <span class="graph-demo-label">End Node</span>
-                    <output id="path-end-node" class="graph-demo-path-value">Not selected</output>
-                  </div>
-                </div>
                 <label class="graph-demo-toggle" for="trace-enabled">
                   <span class="graph-demo-toggle-header">
                     <span class="graph-demo-label">Show Dijkstra Playback</span>
@@ -68,7 +60,7 @@
                   </span>
                   <span class="graph-demo-toggle-note" hidden>Playback is best kept under 30 nodes on slower machines.</span>
                 </label>
-                <button id="run-path" type="button" class="graph-demo-run-button" disabled>Run Dijkstra</button>
+                <button id="run-path" type="button" class="graph-demo-run-button" disabled>Run</button>
                 <div id="graph-demo-playback-control" class="graph-demo-playback-control" aria-label="Dijkstra playback controls">
                   <div class="graph-demo-playback-buttons">
                     <button id="trace-play-pause" type="button" class="graph-demo-trace-button graph-demo-trace-button-primary" disabled>Play</button>
@@ -76,9 +68,8 @@
                 </div>
               </div>
             </section>
-          </aside>
-          <div class="graph-demo-scene-panel">
             <div id="scene-root" class="graph-demo-scene" aria-label="3D graph visualization"></div>
+            <p class="graph-demo-instruction">Experiment with my graph by clicking any two nodes!</p>
           </div>
         </div>
       </section>
@@ -102,6 +93,6 @@
   </footer>
   <script src="graph_viz/dijkstras/viewer.js"></script>
   <script src="graph_viz/dijkstras/translate.js"></script>
-  <script type="module" src="resources/js/home-graph-demo.js"></script>
+  <script type="module" src="resources/js/home-graph-demo.js?v=50nodes2"></script>
 </body>
 </html>
