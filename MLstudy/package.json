@@ -1,0 +1,12 @@
+{
+  "name": "mlstudy",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "render:notes": "node scripts/render-notes.mjs"
+  },
+  "devDependencies": {
+    "katex": "0.19.1",
+    "marked": "16.4.2"
+  }
+}

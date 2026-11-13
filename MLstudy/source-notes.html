@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="The supplied notes are preserved here as an audit trail. Formatting and equations are rendered for readability; the original Markdown remains available to download. Study the corrected explanations in the main chapters."><title>Original notes and figures · MLStudy</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/style.css"><link rel="stylesheet" href="assets/theme.css"><link rel="stylesheet" href="assets/katex/katex.min.css"><script>try{var t=localStorage.getItem('data-science-study-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}</script><script src="assets/glossary.js" defer></script><script src="assets/app.js" defer></script></head>
+<body><a class="skip" href="#main">Skip to content</a><aside class="sidebar"><a class="portfolio-back" href="../views/projects.html" aria-label="Back to Juan Pleitez’s projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m12 5-7 7 7 7M5 12h15"/></svg><span>Back to projects</span></a><a class="brand" href="index.html">MLStudy</a><p class="subtitle">A personal research textbook<br>Machine learning &amp; data science</p><div class="controls"><button type="button" data-theme-toggle>Dark mode</button><button type="button" class="mobile-menu" data-menu-toggle aria-controls="study-nav" aria-expanded="false">Sections</button></div><nav id="study-nav" aria-label="Study sections"><p class="nav-group">Start here</p><a href="index.html">Machine learning and data science</a>
+<p class="nav-group">Foundations</p><a href="lifecycle.html">The Analytics Lifecycle</a>
+<a href="problem-framing.html">Framing Business Problems as Analytics Tasks</a>
+<a href="data-preparation.html">Preparing Reliable, Available Data</a>
+<a href="probability.html">Probability, Evidence, and Naive Bayes</a>
+<a href="decision-trees.html">Decision Trees and Supervised Segmentation</a>
+<a href="linear-models.html">Linear Models, Logistic Regression, and Margins</a>
+<p class="nav-group">Core modeling</p><a href="validation.html">Validation and generalization</a>
+<a href="similarity-clustering.html">Similarity, neighbors, and clusters</a>
+<a href="evaluation.html">Evaluation, ranking, and business value</a>
+<a href="text-mining.html">Text representation and mining</a>
+<a href="associations-ensembles.html">Associations, ensembles, and causal caution</a>
+<p class="nav-group">Applied topics</p><a href="neural-anomaly.html">Neural networks for anomaly detection</a>
+<a href="optimization.html">Numerical optimization for manufacturing</a>
+<a href="pii-phi.html">Contextual PII and PHI detection in text</a>
+<a href="python-engineering.html">Reliable Python engineering and reproducibility</a>
+<a href="delivery.html">Delivery, serving, monitoring, and rollback</a>
+<a href="teamwork.html">Team delivery, communication, and accountable progress</a>
+<a href="applied-projects.html">Applied projects and practice</a>
+<p class="nav-group">Reference</p><a href="glossary.html">Glossary</a>
+<a href="coverage.html">Coverage and corrections</a>
+<a href="source-notes.html" aria-current="page">Original notes and figures</a></nav></aside>
+<main id="main" tabindex="-1"><article class="reading"><header><p class="eyebrow">Unedited course transcription</p><h1>Original BAIM notes and figures</h1><p class="lead">The supplied notes are preserved here as an audit trail. Formatting and equations are rendered for readability; the original Markdown remains available to download. Study the corrected explanations in the main chapters.</p></header><aside class="callout">This appendix intentionally preserves the source wording, including errors and shorthand. See <a href="coverage.html#corrections">corrections</a> before treating it as a definition. Equations and formatting work offline without an external rendering service.</aside><p><a href="assets/course-notes.md" download>Download the original Markdown notes</a>. All 40 source figures are stored locally. Main chapters provide the accessible conceptual explanations and worked calculations.</p><h2 id="original">Complete source text and images</h2>
+<div class="notes-content">
+<h1>BAIM 4200: Business Analytics 2</h1>
+<h3>Chapter 1</h3>
+<p><strong>Data Science:</strong> Set of fundamental principles that guide the extraction of knowledge from data ****</p>
+<p><strong>Data mining</strong>: the extraction of knowledge from data via technologies that incorporate these principles </p>
+<ul>
+<li>data science is more broad</li>
+<li>data mining techniches are some of the clearest uses of the principles of data science</li>
+</ul>
+<p> <strong>churn</strong>: Metric  representing customer defection and the loss of a client to a competitor. </p>
+<ul>
+<li>customers switching over from one company to another</li>
+</ul>
+<p><strong>Data-driven decision-making (DDD)</strong>: Practice of basing decisions on the analysis of data, rather than purely intuition </p>
+<ul>
+<li>increase in productivity</li>
+<li>higher return on assets, equity, asset utilization and market value → causal relationship</li>
+</ul>
+<p><u><strong>2 types of decisions</strong></u></p>
+<ol>
+<li>decisions for which “discoveries” need to be made within data </li>
+<li>decisions that repeat, especially at massive scale</li>
+</ol>
+<ul>
+<li>big data technologies are associated with productivity</li>
+</ul>
+<p><em>data and the capability to extract useful knowledge from data should be regarded as a key strategic asset</em> </p>
+<ul>
+<li>these assets are complementary → need quality data AND a good data science tea m</li>
+</ul>
+<p>data is an asset → quality data acquirement can be at a cost </p>
+<p><img class="note-image" src="assets/notes-images/image.png" alt="Original notes figure: image.png" loading="lazy"></p>
+<h3>Data Mining</h3>
+<p>in the early stages of data mining, we must decide whether to use a supervised or unsupervised method and if supervised we must produce a precise definition of a target variable  </p>
+<p><u>Cross Industry Standard Process for Data Mining (CRISP-DM)</u> </p>
+<p><img class="note-image" src="assets/notes-images/image%201.png" alt="Original notes figure: image 1.png" loading="lazy"></p>
+<ul>
+<li>the key to sucess tends to be accurately framing the business problem as a data science problem, and accurately mapping the real issue to a more tanglible data based one</li>
+<li>being able to narrw down from the business train of though to actually find what exact problem to solve, and the use scenario.</li>
+<li>Data understanding is imperative, it is important to understand the strength and limitation of data</li>
+<li>Data often lacks perfect fit to what we are trying to find, data can be expensive to acquire, contain mistakes, and some require working to collect it from scratch, which involves a whole project of its own</li>
+<li>Data preparation involves fitting the raw data to parameters that our models might use</li>
+<li>converting data to different types, removing or inferring missing values or converting it to different formats is required</li>
+<li>numeric values might need to be normalized or scaled to make them comparable</li>
+<li>Modeling is the primary place where data mining techniques are applied to the data</li>
+<li>Evaluation is a rigorous step in which the data mining results are assessed to gain confidence in the values and have confidence the model works as intended</li>
+<li>Evaluation also serves to help ensure that the model actually satisfies the original business goals</li>
+<li>Evaluation in the actual business context helps test the model, many models that work perfectly, once applied to real life data, start failing or throwing false alarms</li>
+<li>Deployment involves putting the results of data mining and the techniques to real use to realize some return on the investment.</li>
+<li>Deployment tends to involve a predictive model in some busienss process</li>
+</ul>
+<h3>Implications for Managing a Data Science team</h3>
+<p>It tends to be a <strong>mistake</strong> to view data mining as a software or engineering project. Data mining tends to be an <strong>exploratory endevour</strong> closer to <strong>research and development</strong> than software engineering. </p>
+<h3>Other Analytics Techniques</h3>
+<p><strong>Statistics</strong></p>
+<ul>
+<li><strong>summary statistics</strong> Calculating specific values like sums, means, and medians</li>
+<li><strong>Mean</strong> can be misleading in <strong>skewed distributions,</strong> use median instead</li>
+<li><strong>Hypothesis testing</strong> Used to determine if a pattern is a real regularity or just random chance</li>
+<li><strong>Uncertainty</strong> Uses <strong>confidence intervals</strong> to quantify how sure we are of a result</li>
+<li><strong>Relation to Data Mining</strong> Data mining generates hypotheses, which Statistics can test</li>
+</ul>
+<p><strong>Database Querying</strong></p>
+<ul>
+<li>A specific request for a subset of data</li>
+<li>There is no discovery of patterns, simply querying data we know exists</li>
+</ul>
+<p><strong>OLAP (On line Analytical Processing)</strong> </p>
+<ul>
+<li>GUI based tool for manually ‘drilling down’ into data in real time</li>
+<li>Dimensions are <strong>pre-programmed</strong></li>
+<li>Facilitates manual/visula exploration but does not perform automatic modeling</li>
+<li>no predictive modeling or pattern recognition algorithms</li>
+</ul>
+<p><strong>Data Warehousing</strong>   ****</p>
+<ul>
+<li>A centralized repository that collects and “coalesces” data from accross an entire enterprise</li>
+<li>A facilitating technology, making data more easily available for mining</li>
+</ul>
+<p><strong>Regression Analysis</strong> </p>
+<ul>
+<li><strong>Explanatory</strong> - Why did this happen ?</li>
+<li><strong>Predictive</strong> Can we predict what will happen with new data ?</li>
+</ul>
+<p><strong>Machine Learning</strong> </p>
+<ul>
+<li>Subfield of AI</li>
+<li><strong>Differences from Data Mining</strong></li>
+<li>ML includes things like robotics and computer vision</li>
+<li><strong>KDD(Data Mining)</strong> is more focused on the entire process: data prep, business applications, and evaluating results</li>
+</ul>
+<h3>Chapter 2 Business Problems and Data Science Solutions</h3>
+<ol>
+<li><p><em><strong>Classification</strong> and <strong>class probability estimation</strong></em> attempt to predict, for each individual in a population, which of a set of classes this individual belongs to (tend to be small number of sets) </p>
+<ol>
+<li><strong>Classification</strong> the model more so determines which class the individual belongs to: <ol>
+<li>ex: →survey→ categorize customers into ‘will respond’ and ‘won’t respond’ sets</li>
+</ol>
+</li>
+<li><strong>Scoring</strong> or <strong>Class probability estimation:</strong> Produces a model that, given an individual, determines a score representing the probability  that the individual belongs to each class</li>
+</ol>
+</li>
+<li><p><em><strong>Regression(value estimation)</strong></em> attempts to estimate or predict, for each individual, the numeric value of some variable for that individual </p>
+<ol>
+<li>ex: “how much will a customer use the service?”→ variable = <em>service usage</em></li>
+</ol>
+</li>
+<li><p><em><strong>Similarity Matching</strong> attempts to identify similar individuals based on data known about them</em> </p>
+<ol>
+<li><p>tends to be a popular method for making product recommendations </p>
+<p> → finding people with similar purchasing patterns</p>
+</li>
+</ol>
+</li>
+<li><p><em><strong>Clustering</strong></em> attempts to group individuals in a population together by similarities</p>
+<ol>
+<li>usually not for a specic purpose →observing natural groups forming in people</li>
+</ol>
+</li>
+<li><p><em><strong>Co-occurence grouping</strong></em> (also known as frequent itemset mining, association rule discovery, market-basket analysis) attempts to find associations between entities based on transactions involving them </p>
+<ol>
+<li>ex: “What items are commonly purchased together?” - different than clustering since these often appear physically together in the data (whereas clustering tends to be natural patterns forming)</li>
+</ol>
+</li>
+<li><p><em><strong>Profiling</strong></em>(behavior description) attems to characterize the typical behavior of an individual, group, or population</p>
+<ol>
+<li><p>ex: “What is the typical cell phone usage of this customer segment?” </p>
+</li>
+<li><p>often used to establish behavioral norms for anomaly detection </p>
+<p> → credit card fraud detection by unusual purchasing patterns</p>
+</li>
+</ol>
+</li>
+<li><p><em><strong>Link Prediction</strong></em> attempts to predict connections between data items, suggesting a link should exist, and possibly estimating the strength of the link</p>
+<ol>
+<li>based on movies you’ve watched → here are new recommendations</li>
+<li>tends to use graph based algorithms</li>
+</ol>
+</li>
+<li><p><em><strong>Data reduction</strong></em> attempts to take a large set of data and replace it with a smaller set of data, containing much of the important information in the larger set</p>
+<ol>
+<li>attempt to maintain data quality, and possible findings</li>
+<li>easier to deal with, less noise - tradeoff with loss of information</li>
+</ol>
+</li>
+<li><p><em><strong>Causal modeling</strong></em> attempts to help us understand what events or actions <strong>actually</strong> influence others</p>
+<ol>
+<li>tries to determine wether a relationship was purely correlational or wether there was true causation by comparing what happened to a counterfactual scenario where the treatment did not occur</li>
+</ol>
+</li>
+</ol>
+<p><strong>Supervised vs Unsupervised Methods</strong> </p>
+<p><em>Unsupervised →</em>”Do our customers naturally fall into different groups?”</p>
+<ul>
+<li>no specific target behind the question</li>
+</ul>
+<p><em>Supervised</em> → “Can we find groups of customers who have particularly high likelihoods of canceling their service soon after their contracts expire?”</p>
+<ul>
+<li>specifc target we address with the question → will a customer leave ?</li>
+<li>there must be explicitly data on the target</li>
+</ul>
+<p>Classification, regression and causal modeling generaly are solved with supervised methods.</p>
+<p>Similarity matching, link prediction, and data reduction could be either. </p>
+<h3>Chapter 3 Introduction to Predictive Modeling: From Correlation to Supervised Segmentation</h3>
+<p><strong>supervised segmentation</strong> - How can we segment the population into groups that differ from each other with respect to some quantity of interest </p>
+<ul>
+<li>fundamental idea of data mining → finding important informative variables (attributes) of the entities described by the data</li>
+</ul>
+<p><em>information is a quantity that reduces uncertainty about something</em>  </p>
+<ul>
+<li>a predictive model is a formula for estimating the unknown value of interest → the target</li>
+<li>a descriptive model does not estimatea value but gains insight into the underlying process<ul>
+<li>would tell us what something looks like or how variables in a system correlate or work together</li>
+</ul>
+</li>
+</ul>
+<p>an <strong>instance</strong>(row in table) is sometimes called a <strong>feature vector</strong></p>
+<p><strong>induction</strong> →process of learning general patterns or rules from observed data and using them to make predictions or decisions on new, unseen cases </p>
+<p><em>training data</em> is the input data for the induction algorithm used for inducing (training) the model </p>
+<p><u>How do we select important attributes ?</u></p>
+<p>how do we segment instances into resulting groups based on the target variable in the most <em>pure</em> way → most <em>homogenous</em> with respect to the target variable</p>
+<ul>
+<li>if every member of a set has the same value for the target →<em>pure group</em></li>
+<li>realistically <em>pure</em> groups are unlikely → we can still attempt to reduce <em>impurity</em> substantially</li>
+</ul>
+<p><strong>Information Gain</strong> is the most common criterion; It measures the reduction in entropy (impurity) after splitting on an attribute </p>
+<p><strong>Entropy</strong> quantifies class uncertainty; a good split produces subsets with lower entropy (more homogenous classes) </p>
+<ul>
+<li>the attribute with the highest information gain is one that causes the best split (best information gain)</li>
+</ul>
+<p>**<em>log here is base 2</em></p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi><mi>n</mi><mi>t</mi><mi>r</mi><mi>o</mi><mi>p</mi><mi>y</mi><mo>=</mo><mo>−</mo><msub><mi>p</mi><mn>1</mn></msub><mi>l</mi><mi>o</mi><mi>g</mi><mo stretchy="false">(</mo><msub><mi>p</mi><mn>1</mn></msub><mo stretchy="false">)</mo><mo>−</mo><msub><mi>p</mi><mn>2</mn></msub><mi>l</mi><mi>o</mi><mi>g</mi><mo stretchy="false">(</mo><msub><mi>p</mi><mn>2</mn></msub><mo stretchy="false">)</mo><mo>−</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo>−</mo><msub><mi>p</mi><mi>n</mi></msub><mi>l</mi><mi>o</mi><mi>g</mi><mo stretchy="false">(</mo><msub><mi>p</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">entropy = - p_1log(p_1)- p_2log(p_2)- ...- p_nlog(p_n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8095em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal">t</span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mord mathnormal">o</span><span class="mord mathnormal">p</span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">−</span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.0197em;">l</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.0359em;">g</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.0197em;">l</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.0359em;">g</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">...</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.0197em;">l</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.0359em;">g</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></p>
+<p>where </p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo>=</mo><mi>a</mi><mi mathvariant="normal">/</mi><mi>b</mi></mrow><annotation encoding="application/x-tex">p(s) = a/b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal">s</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">a</span><span class="mord">/</span><span class="mord mathnormal">b</span></span></span></span></p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mi>n</mi><mi>u</mi><mi>m</mi><mtext> </mtext><mi>o</mi><mi>f</mi><mtext> </mtext><mi>s</mi><mi>a</mi><mi>m</mi><mi>e</mi><mtext> </mtext><mi>c</mi><mi>l</mi><mi>a</mi><mi>s</mi><mi>s</mi><mtext> </mtext><mi>i</mi><mi>n</mi><mi>s</mi><mi>t</mi><mi>a</mi><mi>n</mi><mi>c</mi><mi>e</mi><mi>s</mi><mtext> </mtext><mi>i</mi><mi>n</mi><mtext> </mtext><mi>s</mi><mi>e</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">a=num\,of\,same\,class\,instances\,in\,set</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">n</span><span class="mord mathnormal">u</span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">s</span><span class="mord mathnormal">am</span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">c</span><span class="mord mathnormal" style="margin-right:0.0197em;">l</span><span class="mord mathnormal">a</span><span class="mord mathnormal">ss</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">in</span><span class="mord mathnormal">s</span><span class="mord mathnormal">t</span><span class="mord mathnormal">an</span><span class="mord mathnormal">ces</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">in</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">se</span><span class="mord mathnormal">t</span></span></span></span></p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>=</mo><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi><mtext> </mtext><mi>i</mi><mi>n</mi><mi>s</mi><mi>t</mi><mi>a</mi><mi>n</mi><mi>c</mi><mi>e</mi><mi>s</mi><mtext> </mtext><mi>i</mi><mi>n</mi><mtext> </mtext><mi>s</mi><mi>a</mi><mi>m</mi><mi>e</mi><mtext> </mtext><mi>s</mi><mi>e</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">b=total\,instances\,in\,same\,set</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">t</span><span class="mord mathnormal">o</span><span class="mord mathnormal">t</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.0197em;">l</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">in</span><span class="mord mathnormal">s</span><span class="mord mathnormal">t</span><span class="mord mathnormal">an</span><span class="mord mathnormal">ces</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">in</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">s</span><span class="mord mathnormal">am</span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">se</span><span class="mord mathnormal">t</span></span></span></span></p>
+<p><img class="note-image" src="assets/notes-images/image%202.png" alt="Original notes figure: image 2.png" loading="lazy"></p>
+<p><em>tells us how impure one individual subset is</em>  </p>
+<p>we also need to know however, how <em>informative</em> an attribute is with respect to our target…</p>
+<p><strong>information gain</strong> measures the <em>change</em> in entropy due to any amount of new information being added </p>
+<p>work through → given an attribute <em><strong>K</strong></em> in our data, <em><strong>K</strong></em> can take on <em><strong>N</strong></em> different values, we can split the set of data into <em><strong>N</strong></em> number of children sets, based on the value <em><strong>K</strong></em> takes on, the larger the drop in entropy from the starting parent set to the subsets, the more information gain attribute <em><strong>K</strong></em> gives us</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mi>G</mi><mo stretchy="false">(</mo><mi>p</mi><mi>a</mi><mi>r</mi><mi>e</mi><mi>n</mi><mi>t</mi><mo separator="true">,</mo><mi>c</mi><mi>h</mi><mi>i</mi><mi>l</mi><mi>d</mi><mi>r</mi><mi>e</mi><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mi>e</mi><mi>n</mi><mi>t</mi><mi>r</mi><mi>o</mi><mi>p</mi><mi>y</mi><mo stretchy="false">(</mo><mi>p</mi><mi>a</mi><mi>r</mi><mi>e</mi><mi>n</mi><mi>t</mi><mo stretchy="false">)</mo><mo>−</mo><mi>p</mi><mo stretchy="false">(</mo><msub><mi>c</mi><mn>1</mn></msub><mo stretchy="false">)</mo><mo>×</mo><mi>e</mi><mi>n</mi><mi>t</mi><mi>r</mi><mi>o</mi><mi>p</mi><mi>y</mi><mo stretchy="false">(</mo><msub><mi>c</mi><mn>1</mn></msub><mo stretchy="false">)</mo><mo>−</mo><mi>p</mi><mo stretchy="false">(</mo><msub><mi>c</mi><mn>2</mn></msub><mo stretchy="false">)</mo><mo>×</mo><mi>e</mi><mi>n</mi><mi>t</mi><mi>r</mi><mi>o</mi><mi>p</mi><mi>y</mi><mo stretchy="false">(</mo><msub><mi>c</mi><mn>2</mn></msub><mo stretchy="false">)</mo><mo>−</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo>−</mo><mi>p</mi><mo stretchy="false">(</mo><msub><mi>c</mi><mi>n</mi></msub><mo stretchy="false">)</mo><mo>×</mo><mi>e</mi><mi>n</mi><mi>t</mi><mi>r</mi><mi>o</mi><mi>p</mi><mi>y</mi><mo stretchy="false">(</mo><msub><mi>c</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">IG(parent,children) = entropy(parent)- p(c_1)\times entropy(c_1) -  p(c_2)\times entropy(c_2) - ... -  p(c_n)\times entropy(c_n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="mord mathnormal">G</span><span class="mopen">(</span><span class="mord mathnormal">p</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal">t</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">c</span><span class="mord mathnormal">hi</span><span class="mord mathnormal" style="margin-right:0.0197em;">l</span><span class="mord mathnormal">d</span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal">t</span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mord mathnormal">o</span><span class="mord mathnormal">p</span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mopen">(</span><span class="mord mathnormal">p</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal">t</span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mord mathnormal">o</span><span class="mord mathnormal">p</span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal">t</span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mord mathnormal">o</span><span class="mord mathnormal">p</span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">...</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal">t</span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mord mathnormal">o</span><span class="mord mathnormal">p</span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></p>
+<p>where </p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><msub><mi>c</mi><mi>n</mi></msub><mo stretchy="false">)</mo><mo>=</mo><mi>a</mi><mi mathvariant="normal">/</mi><mi>b</mi></mrow><annotation encoding="application/x-tex">p(c_n) = a/b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">a</span><span class="mord">/</span><span class="mord mathnormal">b</span></span></span></span></p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mi>i</mi><mi>n</mi><mi>s</mi><mi>t</mi><mi>a</mi><mi>n</mi><mi>c</mi><mi>e</mi><mi>s</mi><mtext> </mtext><mi>i</mi><mi>n</mi><mtext> </mtext><mi>c</mi><mi>h</mi><mi>i</mi><mi>l</mi><mi>d</mi><mtext> </mtext><mi>s</mi><mi>u</mi><mi>b</mi><mi>s</mi><mi>e</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">a=instances\,in\,child\,subset</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">in</span><span class="mord mathnormal">s</span><span class="mord mathnormal">t</span><span class="mord mathnormal">an</span><span class="mord mathnormal">ces</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">in</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">c</span><span class="mord mathnormal">hi</span><span class="mord mathnormal" style="margin-right:0.0197em;">l</span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">s</span><span class="mord mathnormal">u</span><span class="mord mathnormal">b</span><span class="mord mathnormal">se</span><span class="mord mathnormal">t</span></span></span></span></p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>=</mo><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi><mtext> </mtext><mi>i</mi><mi>n</mi><mi>s</mi><mi>t</mi><mi>a</mi><mi>n</mi><mi>c</mi><mi>e</mi><mi>s</mi><mtext> </mtext><mi>i</mi><mi>n</mi><mtext> </mtext><mi>d</mi><mi>a</mi><mi>t</mi><mi>a</mi><mi>s</mi><mi>e</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">b=total\,instances\,in\,dataset</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">t</span><span class="mord mathnormal">o</span><span class="mord mathnormal">t</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.0197em;">l</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">in</span><span class="mord mathnormal">s</span><span class="mord mathnormal">t</span><span class="mord mathnormal">an</span><span class="mord mathnormal">ces</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">in</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">a</span><span class="mord mathnormal">t</span><span class="mord mathnormal">a</span><span class="mord mathnormal">se</span><span class="mord mathnormal">t</span></span></span></span></p>
+<p><em>notice the entropy for each child is weighted by the proportion of instances belonging to that child</em> </p>
+<p><em>notice P(.) is different for IG vs entropy</em> </p>
+<p>So far everything above works for classification of discrete, categorical variable problems, but what if its not discrete objects but <strong>numeric</strong> ?</p>
+<p>for regression problems with a numeric target variable, <em>information gain</em> is not the right measure, because entropy based information gain is based on the distribution of properties, we want a measure of the purity of the <strong>numeric target values</strong> themselves.</p>
+<p>A natural measure of impurity for numeric values → <strong>variance</strong> </p>
+<ul>
+<li>if the set has all the same values for the numeric variable then the set is pure and <strong>variance = 0</strong></li>
+<li>if the numeric target values are very different then there is high variance ****</li>
+</ul>
+<p>we can observe, similarly to information gain, the reduction in variance from parent to child sets</p>
+<p><strong>tree structured classification models</strong></p>
+<ul>
+<li>predict a categorical target by recursively splitting the data based on attribute values, at each nod the model chooses the attribute that best separates the classes, typically using measures like entropy and information gain</li>
+<li>recursively continues until subsets are sufficiently pure or stopping criteria are met</li>
+<li>trees can then be used for predictions bby following the path from the root to the lead</li>
+</ul>
+<p><img class="note-image" src="assets/notes-images/image%203.png" alt="Original notes figure: image 3.png" loading="lazy"></p>
+<p><strong>probability estimation</strong> </p>
+<ul>
+<li>instead of predicting a discrete value x or y, we would like to predict the probability of something being x or y</li>
+</ul>
+<p>if a leaf of a tree contains n positive instances and m negative instances, the probabillity of any new instance being positive may be estimted as </p>
+<p>p = <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mi>m</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">n/(n+m)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">n</span><span class="mord">/</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">m</span><span class="mclose">)</span></span></span></span></p>
+<p>this however, can cause problems in small datasets </p>
+<ul>
+<li>in an extreme case, one leaf could contain just one instance, meaning it would tell us there is 100% probability that future members that follow this segment of the tree will have the same class as this one instance</li>
+<li>overfitting problem → weighing too much on training data that is not reflective of the complete real world cases</li>
+</ul>
+<p>for tree based probability estimation, instead of simply computing the frequency we can smooth out the version of the frequency based estimate → Laplace correction (moderates the influence of leaves with only a few instances) </p>
+<p><u><strong>binary class probability estimation</u></strong> becomes </p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><mrow><mi>n</mi><mo>+</mo><mi>m</mi><mo>+</mo><mn>2</mn></mrow></mfrac></mrow><annotation encoding="application/x-tex">p(c) =\frac{n+1}{n+m+2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal">c</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.0908em;vertical-align:-0.7693em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><p>n = number of examples in leaf belonging to class c </p>
+<p>m is the number of examples not belonging to class c</p>
+<p><em>this estimation essentially gives us an uncertainity padding used for small datasamples</em></p>
+<ul>
+<li><em>it could reduce a 1.00 probability to a 0.75 probability to account for small data</em></li>
+</ul>
+<p><em>observe that, as the dataset grows and consecutively n and m , the correction becomes less and less making a more confident estimate</em> </p>
+<h3>Chapter 4 Fitting a Model to Data</h3>
+<p><strong>Parametric modeling:</strong> A modeling approach where a specific mathematical equation or structure leaving certain numerical values undecided </p>
+<p><strong>Parameter Learning:</strong> The process of tuning the undecided numerical values using training data so that the resulting model fits the actual data as accurately as possible.</p>
+<p>entropy gives us a way of measuring for homogeneity so we can define group boundaries</p>
+<ul>
+<li>this helps us create regions of homogeneity to help predict the target variable of a new unseen instance</li>
+<li>we can separate instances (of binary value in this case) with a <em>linear classifier</em></li>
+</ul>
+<p><u>linear discriminant function</u> </p>
+<p><img class="note-image" src="assets/notes-images/image%204.png" alt="Original notes figure: image 4.png" loading="lazy"></p>
+<p><img class="note-image" src="assets/notes-images/image%205.png" alt="Original notes figure: image 5.png" loading="lazy"></p>
+<p><em><strong>linear discriminant</strong></em> discriminates between the classes, and the function of the decision boundary is a linear combination - weighted sum- of the attributes</p>
+<p><em>just how trees are a classifier for a specifc set of rules, a linear discriminant function is a numeric classification model</em></p>
+<p><u>general linear model</u> </p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>w</mi><mn>0</mn></msub><mo>+</mo><msub><mi>w</mi><mn>1</mn></msub><msub><mi>x</mi><mn>1</mn></msub><mo>+</mo><msub><mi>w</mi><mn>2</mn></msub><msub><mi>x</mi><mn>2</mn></msub><mo>+</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo>+</mo><msub><mi>w</mi><mi>n</mi></msub><msub><mi>x</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">f(x) = w_0 +w_1x_1+w_2x_2 + ... + w_nx_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0269em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0269em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0269em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0269em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0269em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0269em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">...</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0269em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0269em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></p>
+<p>a <em>parametrized model</em> where the weights of the linear function are the parameters</p>
+<p><strong>weights</strong> can be loosely interpreted as importance indicators of the features, with the larger the magnitude of a feature’s weight, the more important that feature is for classifying the target (assuming all features have been <em>normalized</em> to the same range) </p>
+<p>In many cases, we often dont have a single line that best fits the data, rather hundreds or infinite possible lines so how do we pick? </p>
+<ul>
+<li><p>define an objective in choosing parameters, what weights should we choose ?</p>
+</li>
+<li><p>define an <strong>objective function</strong> that represents our goal and can be calculated for a particular set of weights and a particular set of data, then we find the optimal values for weights by maximizing or minimizing the objective function</p>
+</li>
+<li><p>creating an objective function that matches the exact goal is usually impossible</p>
+</li>
+<li><p>possible solutions → support vector machines ,different types of regression</p>
+</li>
+<li><p>most useful one → logistic regression</p>
+</li>
+<li><p>we can see logistic regression perfectly split the data types</p>
+</li>
+<li><p>while support vector machine splits the points evenly between groups</p>
+</li>
+</ul>
+<p><img class="note-image" src="assets/notes-images/image%206.png" alt="Original notes figure: image 6.png" loading="lazy"></p>
+<p><strong>Logistic Regression</strong> applies linear models to class probability estimation</p>
+<p><strong>Support Vector Machines</strong> are linear discriminants </p>
+<ul>
+<li>they attempt to fit the widest possible bar between data, and the linear discriminant will be the center line</li>
+<li>the distance between the edges of the bar is known as the <em>margin</em></li>
+<li>SVM’s objective is to maximize the <em>margin</em></li>
+</ul>
+<p><img class="note-image" src="assets/notes-images/image%207.png" alt="Original notes figure: image 7.png" loading="lazy"></p>
+<p>SVMs attempt maximize margin in expectiations of new instances being plotted in the general areas as training data but we know they will be different</p>
+<ul>
+<li>by maximizing margin, SMVs give the maximal leeway for classifying points and still being on the expected side of the discriminant</li>
+<li>With certain data it is often the chance that a single line can not perfectly separate the data</li>
+<li>to deal with incorrectly classified points, on the <strong>objective function</strong> in that measures how well a particular model fits the training points, we penalize a training point for being on the ‘wrong’ side of the decision boundary</li>
+<li>The best fit in this case is a balance between a large margin and low total error penalty</li>
+<li><em><strong>Hinge Loss</strong></em> Points on the wrong side of the line are penalized proportionally to their distance from the margin</li>
+</ul>
+<p><strong>Regression via Mathematical Functions</strong></p>
+<p><strong>loss</strong> a general term for error penalty</p>
+<p><strong>loss function</strong> determines how much penalty should be assigned to an instance based on the error in the model’s predicted value </p>
+<ul>
+<li>in SVM’s hinge loss only becomes positive when an example is on both the wrong side of the boundary AND beyond the margin</li>
+</ul>
+<p><strong>zero-one-loss</strong> simply assigns a loss of 0 to correct datapoints and 1 to wrong ones </p>
+<p><strong>squared error loss function</strong>-</p>
+<p><strong>absolute error</strong> - The error of a prediction measured as the difference between the predicted and actual target vaue</p>
+<ul>
+<li>We could minimize the sum or mean of the absolute errors across training data to improve a model</li>
+</ul>
+<p><strong>least squares regression</strong> - Standard way linear regression models measure error - Minimizes the sum or mean of the <em>squares</em> of the errors </p>
+<ul>
+<li>very sensitive to data, incorrect or outlying data points can severly skew the resulting linear function</li>
+</ul>
+<p><strong>Class Probability Estimation and Logistic ‘Regression’</strong> </p>
+<ul>
+<li>A linear discriminant like linear regression or SVMs only tell you on what side of the line, or what group, a new piece of data might fall into, but it doesn’t tell you what the probability is of that happening</li>
+<li>While on linear models, the further a data point is from the line, the higher the odds of it being in that class are, linear models are unbounded</li>
+<li>since probability is measured between 0 and 1, we can’t use linear models (which are unbounded from <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mi mathvariant="normal">∞</mi></mrow><annotation encoding="application/x-tex">-\infty</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">∞</span></span></span></span>  →  <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∞</mi></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord">∞</span></span></span></span>) to map probability, as you can’t fit a line with no bounds within 0 and 1</li>
+</ul>
+<p><a href="https://app.notion.com"></a></p>
+<p>The odds of an event is the ratio of the probability of it happening vs it not happening </p>
+<p>p = 0.5 → odds : 50/50 or 1 </p>
+<p>p = 0.9 → odds: 90:10 or 9</p>
+<p>p = 0.01 → odds 1:99 or 1/99 </p>
+<ul>
+<li>by taking the odds we now have probability in terms of odds bounded to 0 →  <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∞</mi></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord">∞</span></span></span></span></li>
+<li>if we now take the log of those odds (<strong>log-odds</strong>), we end up with the probability values now on the range of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mi mathvariant="normal">∞</mi></mrow><annotation encoding="application/x-tex">- \infty</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">∞</span></span></span></span> →  <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∞</mi></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord">∞</span></span></span></span> , allowing us to fit a linear model to them</li>
+<li>Now this model can be used to predict log odds of new data, which can be easily converted to an understandable probability value</li>
+</ul>
+<h3>Chapter 5 Overfitting and its avoidance</h3>
+<p><strong>Generalization</strong> The ability of a model to make accurate predictions on <strong>unseen (holdout)</strong> data </p>
+<p><strong>Overfitting</strong> is the tendency of data mining procedures to tailer models to the training data, at the expense of generalization to previously unseen data points. The model fails to generalize</p>
+<p>A <u><strong>Fitting Graph</u></strong> shows the accuracy of a model as a function of the complexity</p>
+<p><strong>Tree models</strong> can be <strong>overfit</strong> to the point of creating a leaf node for every single instance in the training data, fitting it exactly and essentially creating a lookup table for the data, which does not generalize well at all with new data </p>
+<p><img class="note-image" src="assets/notes-images/image%208.png" alt="Original notes figure: image 8.png" loading="lazy"></p>
+<p><strong>Linear models</strong> can be overfit if we give them too many variables and leeway allowing a line to be overfit exactly to the data while not truly representing the general pattern </p>
+<p>In this example, we can see the <strong>SVM</strong> has a quite accurate representation of the general trend pattern, and adding the <strong>new data point (star)</strong> causes the <strong>Logistic regression</strong> to completely ignore the general trend, just to accomodate and fit the new data point</p>
+<p><img class="note-image" src="assets/notes-images/image%209.png" alt="Original notes figure: image 9.png" loading="lazy"></p>
+<p>overfitting can cause us to ‘hallucinate’ correlations between variables in our training data that are actually not real or consistent correlations, causing the model to fit our training data perfectly but failing to generalize when applied to unseen data</p>
+<p><strong>Cross Validation</strong> is a technique used to estimate the generalization performance of a machine learning model by systematically partitioning a dataset into multiple training and testing datasets </p>
+<ul>
+<li>Unlike a single holdout split, cross-validation ensures every data point is used for both training and testing across multiple iterations, providing a more reliable assessment of how a model will perform on unseen data.</li>
+</ul>
+<p>k-folds testing</p>
+<p><img class="note-image" src="assets/notes-images/image%2010.png" alt="Original notes figure: image 10.png" loading="lazy"></p>
+<p>after cross validation we can find the accuracy/performance average for the model and standard deviation</p>
+<p><u><strong>Learning Curves</strong></u> plot the generalization performance against the amount of training data</p>
+<p><img class="note-image" src="assets/notes-images/image%2011.png" alt="Original notes figure: image 11.png" loading="lazy"></p>
+<p>We can avoid overfitting a tree by examining complexity control in tree induction. As trees grow, they can overfit the data and become too complex, to avoid overfitting we can : </p>
+<ul>
+<li>Stop growing the tree before it gets too complex</li>
+<li>Grow the tree until its too large and then <em>prune</em> it back, to reduce its complexity</li>
+</ul>
+<p>We can limit tree sizes by setting a <strong>minimum number</strong> of <strong>instances</strong> that must be in a leaf, this prevents overly-specified leaves that only applies to a small subset and won’t generalize well</p>
+<ul>
+<li>This reserves the leaves to only be created for attributes in which we can classify more data and allows the model to be more generalized</li>
+</ul>
+<p>Setting a specific number of instances can be good but there is no way to know how many instances we should go with</p>
+<p>We can fix this by instead using hypothesis testing at each node,</p>
+<ul>
+<li>at each node we using hypothesis testing, to see if splitting that node would create any relevant amount of information gain or if the information gain is minimal/by chance</li>
+<li>if IG actually improves by a significant amount, we split, else we end that node there</li>
+</ul>
+<p><strong>pruning</strong> involes replacing a set of leaves or a branch with one leaf, generally, if a set of leaves can be replaced by one single leaf, and not resduce accuracy, then we go ahead and do that, and we can iterate this on the tree until we reach a point where any more simplification would result in reduced accuracy </p>
+<p>If we want to compare models we can split the daa into <strong>sub-training set</strong>, a <strong>valiation set</strong>, which we can use as tests during modeling, and based on outcomes we can continue to iterate a model, and finally a <strong>final test set</strong>, to see model performance, but is independent of the modeling process and we dont use it as feedback to change the model </p>
+<p><strong>Nested Cross Validation</strong></p>
+<ul>
+<li>Say we perform cross validation with 5 folds, on each fold, we then perform CV on that fold’s training data</li>
+<li>our CV model might need a tuneable complexity parameter C, rather than directly guessing it, we can define a list of standard or guessed C values, and use those for the inner loop of CV, from there we can find which C value leads to best performance, and use that C value for the outer loop</li>
+</ul>
+<p><strong>Sequential Forward Selection</strong> of features uses a nested holdout to first pick the best individual feature by looking at models built using just one feature. We then add a second feature to the best first one, and then the best pair is selected, the same is done for the remaining features</p>
+<p>While for trees we can prune or limit growth, for Regression like models we can avoid overfitting using regularization </p>
+<p><strong>Regularization</strong> Optimizing some combination of model fit and simplicity that adds a penalty to the objective function that penalizes model complexity. </p>
+<ul>
+<li>our aim is to minimize both  total error as well as complexity</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>Feature</strong></th>
+<th><strong>L2 Regularization (Ridge)</strong></th>
+<th><strong>L1 Regularization (Lasso)</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>The Math</strong></td>
+<td>Sum of the <strong>squares</strong> of the weights (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>w</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">w^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0269em;">w</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>).</td>
+<td>Sum of the <strong>absolute values</strong> of the weights ($</td>
+</tr>
+<tr>
+<td><strong>The Effect</strong></td>
+<td>Keeps weights <strong>small</strong> but rarely zero.</td>
+<td>Forces many weights to be <strong>exactly zero</strong>.</td>
+</tr>
+<tr>
+<td><strong>The Benefit</strong></td>
+<td>Prevents any one feature from dominating.</td>
+<td>Acts as <strong>Automatic Feature Selection</strong> by &quot;turning off&quot; useless variables.</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>Ridge Regression:</strong> Linear Regression + L2 Penalty.</li>
+<li><strong>Lasso:</strong> Linear Regression + L1 Penalty.</li>
+<li><strong>Support Vector Machines (SVM):</strong> Uses a specific fit measure called <strong>Hinge Loss</strong> + L2 Penalty.</li>
+<li><strong>Regularized Logistic Regression:</strong> Uses &quot;Likelihood&quot; + L2 (or L1) Penalty.</li>
+</ul>
+<p><strong>target leakage</strong>: Variables you use from historic data to train the model won’t actually exist when you apply the model to real life </p>
+<p><strong>model leakage</strong>: Your test data is too similar to the training data giving a false sense of a good model that fails when applies to truly new data</p>
+<h3>Chapter 6 Similarity, Neighbors &amp; Clusters</h3>
+<p>Similarity can be used for doing classification and regression </p>
+<ul>
+<li>amazon &amp; netflix use it for ‘people who watched this also watched …”</li>
+</ul>
+<p>represent objects as feature vectors, the closer they are the more similar they are </p>
+<p>In the image we use pythagorean theorem to find the <em>euclidean distance</em> between two points </p>
+<p>we can extend it to n dimensions</p>
+<p><img class="note-image" src="assets/notes-images/image%2012.png" alt="Original notes figure: image 12.png" loading="lazy"></p>
+<p><img class="note-image" src="assets/notes-images/image%2013.png" alt="Original notes figure: image 13.png" loading="lazy"></p>
+<p><u><strong>Nearest Neighbor</strong></u> reasoning to find the most similar points </p>
+<p>we can predict a new examples target value by mapping it based on attributes estimating it by looking at its nearest neighbors</p>
+<p>we can have a sort of combining function operating on neighbors known target values &amp; weights to estimate a new target value </p>
+<p><img class="note-image" src="assets/notes-images/image%2014.png" alt="Original notes figure: image 14.png" loading="lazy"></p>
+<p>we can have <strong>probability estimation</strong> for classification by looking at the nearest neighbors and finding the ratio of data in both sides of the classification to get a probability </p>
+<p>we can also perform regression in a similar way, taking means of surrounding data points to come up with a predicted target value </p>
+<p><u>how many neighbors do we look at ?</u> </p>
+<ul>
+<li>as we look at more neighbors, the estimates are smoother, however too much and we can just end up averaging the entire dataset or classifying the new point into simply the majority</li>
+<li>we set k nearest neighbors <strong>KNN</strong></li>
+</ul>
+<p>Neighbors will differ by different amounts based on how similar they are to our new point, so we used weighted systems so each neighbors influence on the outcome is scaled by how similar (close) it is, this lets us worry less about picking a specific k value since distances do the ‘talking’</p>
+<p>k is also a complexity parameter, at k=1 we have an incredibly complex model way too overfit, and at k = n (dataset size) we have an over generalized model with low complexity </p>
+<p><img class="note-image" src="assets/notes-images/image%2015.png" alt="Original notes figure: image 15.png" loading="lazy"></p>
+<p><img class="note-image" src="assets/notes-images/image%2016.png" alt="Original notes figure: image 16.png" loading="lazy"></p>
+<p><strong>avoiding overfitting</strong> can be done by using cross-validation or nested holdout testing for different values of k</p>
+<p><u><strong>Issues with Nearest Neighbor Methods</strong></u></p>
+<ul>
+<li><p><strong>Intelligibility</strong></p>
+<p>  The model is not easy to explain and in situations where a genuine deep explenation is required these models wont suffice as they simply classify but don’t explain the why especially on datasets with complex multi dimensional vectors</p>
+</li>
+<li><p><strong>Dimensionality &amp; domain Knowledge</strong></p>
+<p>  it uses distance from all features which adds complexity and high dimensionality to the problem creating noise in distances and causing two items that might actually be very similar to appear further apart, two different features might have very different proportion/scaling making the raw numbers look very different </p>
+<p>  <strong>-requires feature selection</strong> that only includes features the data scientist regards as valuable/important for the prediction model </p>
+<p>  -can also be addressed with assigning manual weights to different features </p>
+</li>
+<li><p><strong>Computational Efficiency</strong></p>
+<p>  While training the model is fast actually predicting each new instance requires a complex calculation and querying the database for potentially thousands or more points and computing distances</p>
+</li>
+</ul>
+<p>Euclidean distance can present problems for categorical (binary) values either 0 or 1, as well as different variables having very different ranges such as age 0-100 while income 0-10million but to the model a simple 10$ difference might seem the same as a 10 year age gap </p>
+<p><strong>euclidean distance is also called the L2 norm</strong> </p>
+<p><img class="note-image" src="assets/notes-images/image%2017.png" alt="Original notes figure: image 17.png" loading="lazy"></p>
+<p><em>L1 Norm</em> </p>
+<p><img class="note-image" src="assets/notes-images/image%2018.png" alt="Original notes figure: image 18.png" loading="lazy"></p>
+<p><em>Jaccard Distance</em> is useful when we have binary features, or the absence of a trait should not count for similarity</p>
+<p><img class="note-image" src="assets/notes-images/image%2019.png" alt="Original notes figure: image 19.png" loading="lazy"></p>
+<p><em>Cosine Distance</em> is useful when our data has different scales we want to ignore, we care more about direction than magnitude</p>
+<p><img class="note-image" src="assets/notes-images/image%2020.png" alt="Original notes figure: image 20.png" loading="lazy"></p>
+<p><strong>Clustering</strong> </p>
+<p>We want to find groups of objects where objects within groups are similar, and in different groups are dissimilar </p>
+<p><strong>Higherarchical Clustering</strong> </p>
+<p><em>dendogram</em> </p>
+<p>The highestlevel cluster contains all the data and the lowest level would be that each data point is cluster itself </p>
+<p> clusters start as singular nodes, and using disntace between instances, larger and larger clusters are merged together </p>
+<p><strong>linkage function</strong> could be the euclidean distance between the closest points in each of the clusters</p>
+<p><img class="note-image" src="assets/notes-images/image%2021.png" alt="Original notes figure: image 21.png" loading="lazy"></p>
+<p><u><strong>Nearest Neighbor- Clustering Around Centroids</strong></u></p>
+<p>we can represent each cluster by its ‘cluster center’ (centroid) </p>
+<p>k-means clustering gives us centroids determined by the means of the points surrounding it </p>
+<p>k = the number of clusters we would like to find in the data </p>
+<p><img class="note-image" src="assets/notes-images/image%2022.png" alt="Original notes figure: image 22.png" loading="lazy"></p>
+<p>the <strong>k-means algorithm</strong> starts by finding k points (either randomly, predetermined by user, actual data points, or preprocessing to determine a good set of starting centers) </p>
+<p>then we find the centers neighbors, forming our clusters and then we find the actual mean (centroids) of these clusters, after finding this new center we repeat it, finding new neighbors and new means, shifting to a new centroid, - this algorithm iterates until clusters reach a steady state (or a stopping criterion) </p>
+<h3>Chapter 7 Decision Analytic Thinking 1: What Is a Good Model ?</h3>
+<p>(general) <strong>classification accuracy</strong> <strong>= (correct decisions made) / (total decisions made)</strong></p>
+<p><strong>Confusion Matrix</strong> evaluates performance for an ML classification model comparing predicted lables against their correctness</p>
+<p><img class="note-image" src="assets/notes-images/image%2023.png" alt="Original notes figure: image 23.png" loading="lazy"></p>
+<p><strong>unbalanced classes</strong> are those where the interesting class is small/rare. Say looking for fraud in a db of transactions, only a tiny fraction will actually be fraud, our classes of fraud/no fraud are unbalanced </p>
+<p><strong>As data is more skewed</strong> accuracy based evaluation breaks down. In a skewed domain with a class appreance ratio is 999:1, A model that always selects the prevalent class gives us a 99.9% accuracy score, despite incorrectly classifying the class we are actually interested in looking for</p>
+<p><strong>base rate</strong> of a class, corresponds to how well a classifier would perform by simply choosing that class for every single isntance </p>
+<p>Accuracy is not the right thing to measure. With skewed data we can get good accuracy by picking the best base rate, and incorrectly classifying the smaller class, even if that is the one we care more about.</p>
+<p>Accuracy also does not discern between false positive and false negative errors, classifying them as equal errors, while in real scenario applications, a false positive and a false negative can have very different implications </p>
+<p><strong>Expected Value</strong> - The weighted average of all possible outcomes </p>
+<ul>
+<li>the weight given to each value is the probability of its occurence</li>
+</ul>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mi>V</mi><mo>=</mo><mi>p</mi><mo stretchy="false">(</mo><msub><mi>o</mi><mn>1</mn></msub><mo stretchy="false">)</mo><mo>×</mo><mi>v</mi><mo stretchy="false">(</mo><msub><mi>o</mi><mn>1</mn></msub><mo stretchy="false">)</mo><mo>+</mo><mi>p</mi><mo stretchy="false">(</mo><msub><mi>o</mi><mn>2</mn></msub><mo stretchy="false">)</mo><mo>×</mo><mi>v</mi><mo stretchy="false">(</mo><msub><mi>o</mi><mn>2</mn></msub><mo stretchy="false">)</mo><mo>+</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo>+</mo><mi>p</mi><mo stretchy="false">(</mo><msub><mi>o</mi><mi>n</mi></msub><mo stretchy="false">)</mo><mo>×</mo><mi>v</mi><mo stretchy="false">(</mo><msub><mi>o</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">EV = p(o_1)\times v(o_1) +p(o_2)\times v(o_2) + ... +  p(o_n)\times v(o_n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="mord mathnormal" style="margin-right:0.2222em;">V</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">o</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">o</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">o</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">o</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">...</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">o</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">o</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>  </p>
+<p>In many areas we often classify something as true if the probability is &gt; 50%. </p>
+<p>In cases with highly skewed data, the probability of an event happening is tiny and we would classify every instance as no, missing the important outliers</p>
+<p>Rather than classifying on this, we can classify on EV, </p>
+<ul>
+<li>if EV(Targeting) &gt; EV(Not Targeting)  then we should target</li>
+</ul>
+<p>we can make a confusion matrix counting the true classifications as contributing benefits and the missed classifications as costs, to find an EV of a model resulting in said confusion matrix </p>
+<p><img class="note-image" src="assets/notes-images/image%2024.png" alt="Original notes figure: image 24.png" loading="lazy"></p>
+<p>To test models’ predictive power we might often factor out the probabilities of seeing each class</p>
+<ul>
+<li>say fraud happens 1 out of 1000 times, if we want to test a model, we might feed it a dataset where instead, fraud happens 50% of the time, to more accurately separate the models predictive power from the class imbalance</li>
+</ul>
+<p>We can factor out the probabilities of class occurence to have a function as a factor of them </p>
+<p>where p(p) is the probability of positive occuring naturally (skew) </p>
+<p><img class="note-image" src="assets/notes-images/image%2025.png" alt="Original notes figure: image 25.png" loading="lazy"></p>
+<p>we can then replace the probabilities of class instances to 0.5,0.5 to test pure model predictive power</p>
+<p>It is important to consider what a reasonable baseline is against which to compare your models perofrmance when using it as a deciding factor in a real world application </p>
+<p>For classification tasks, a good baseline is a <strong>majority classifier</strong> - always chooses the majoriy class of the training set </p>
+<p><strong>decision stump</strong> - a tree with one node, only using the single most informative feature to make a choice - can be a good baseline </p>
+<p><u><strong>Regression Metrics</strong></u></p>
+<p><strong>Mean Absolute Error (MAE)</strong>- absolute value of error between predicted and actual values, telling you the average magnitude of errors</p>
+<p><strong>Mean Squared Error (MSE)</strong> - averages the squared difference of actual and predicted values, penalizing larger outliers much more than MAE </p>
+<p><strong>Root Mean Squared Error (RMSE)</strong> - Sqrt of MSE, normalizing it to the scale of the target values while still penalizing large outliers </p>
+<p><u><strong>Classification Metrics</strong></u></p>
+<p><strong>model accuracy -</strong> correct decisions /  total decisions ( we know its highly inaccurate on skewed class sizes)  ****</p>
+<p><strong>model precision</strong> - Measures the accuracy specifically for only positive predictions, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>t</mi><mi>p</mi></mrow><mrow><mi>t</mi><mi>p</mi><mo>+</mo><mi>f</mi><mi>p</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{tp}{tp+fp}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.3578em;vertical-align:-0.4811em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8767em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">tp</span><span class="mbin mtight">+</span><span class="mord mathnormal mtight" style="margin-right:0.1076em;">f</span><span class="mord mathnormal mtight">p</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4461em;"><span class="pstrut" style="height:3em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">tp</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4811em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>                 <em>‘how often when the model predicted a positive was it actually right’</em></p>
+<p><strong>model recall</strong> - Measures how well the model actually found all positive cases <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>t</mi><mi>p</mi></mrow><mrow><mi>t</mi><mi>p</mi><mo>+</mo><mi>f</mi><mi>n</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{tp}{tp+fn}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.3578em;vertical-align:-0.4811em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8767em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">tp</span><span class="mbin mtight">+</span><span class="mord mathnormal mtight" style="margin-right:0.1076em;">f</span><span class="mord mathnormal mtight">n</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4461em;"><span class="pstrut" style="height:3em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">tp</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4811em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> </p>
+<p><em>‘of all actual positives, how many did the model actually get’</em> </p>
+<p><strong>model f1_score</strong> - harmonic mean of precision and recall, balances both metrics into one value</p>
+<h3>Chapter 8 Visualizing Model Performance</h3>
+<p>EV can use the ‘score’ assigned by a model to determine probabilities and from there whether to take action on something, however for large amounts of cases where many are not worth looking at, or those where we don’t have exact probabilities, or a situation in which we dont need exact values, calculating EV becomes costly and unnecessary </p>
+<p><strong>Ranking</strong> a set of cases by the raw scores instead, gives us a priority list, where we can pick the top n cases determined by a cutoff, which allows us to work with the few select that are relevant</p>
+<p>We can have highly restrictive models with a high threshold make classifier decisions very conservative (requiring high certainty) or highly permissive thresholds, allowing a lower threshold</p>
+<p>How do we compare rankings and choose a proper threshold? </p>
+<ul>
+<li>we can create confusion matrices at any threshold</li>
+<li>if we have accurate probabilities and a good cost-benefit matrix, we can set our threshold to where our expected profit is above a certain level (usually above 0)</li>
+</ul>
+<p><img class="note-image" src="assets/notes-images/image%2026.png" alt="Original notes figure: image 26.png" loading="lazy"></p>
+<p><strong>Profit Curves</strong>: We can plot our expected profit, against different thresholds. As we lower thresholds we can notice that we get more and more errors in our confusion matrix, usually resulting in lower and lower profits </p>
+<p>in this example each targeted customer costs 5$ to target, and if we succeed the customer spends an average of 9$ with us, thisis the profit curve</p>
+<p><img class="note-image" src="assets/notes-images/image%2027.png" alt="Original notes figure: image 27.png" loading="lazy"></p>
+<p>profit curves require us to know: </p>
+<ul>
+<li><strong>class priors(base rate)</strong> : The proportion of positives and negatives in our target population</li>
+<li><strong>Costs and benefits:</strong> → So that we know how much our profit changes as a result of lowering the threshold</li>
+<li>we need to know both to map the pc because as we lower the threshold we need to know class priors to know how many errors we are letting in and as a result how they are affecting our profit</li>
+</ul>
+<p><em>when we have uncertainty in our class priors or different profits or costs depending on specific situations we can plot multiple expected profit curves however they can quickly grow out of hand</em> </p>
+<p><strong>ROC(Receiver Operating Characteristics) Graphs</strong> accomodate these uncertainties by instead plotting classifiers on a graph comparing <strong>true positives to false</strong> <strong>positives</strong> </p>
+<p>A ranking model can create points in an ROC space creating the curve in img2, where each point is a binary classifier with different thresholds, creating the curve</p>
+<p><strong>AUC (Area Under the Curve)</strong> Determines how closely our model sticks to the left of the graph. </p>
+<ul>
+<li>when comparing how good a model is, the closer the AUC is to 1, the better the model is</li>
+</ul>
+<p><img class="note-image" src="assets/notes-images/image%2028.png" alt="Original notes figure: image 28.png" loading="lazy"></p>
+<p><img class="note-image" src="assets/notes-images/image%2029.png" alt="Original notes figure: image 29.png" loading="lazy"></p>
+<p><em>ROC Curves are not the most intuitive, for easier visualization we can view at <u>Cumulative Response Curves and Lift Curves</u></em></p>
+<p><strong>Cumulative Response Curves</strong> plot the hit rate (tp rate y axis) as a function of the percentage of the population that is targeted.</p>
+<p><strong>Lift</strong> of a classifier represents the advantage it provides over random guessing</p>
+<p><strong>Lift curve</strong> is the value of the cumulative response curve at a given point x divided by the diagonal line (y=x)</p>
+<ul>
+<li>to correctly build a cumulative response curve, we must know the actual size of the actual positives in the dataset, and the proportion of positives in the test data must be accurately represented by the training data</li>
+</ul>
+<p><u><strong>Read Example: Performance Analytics for Churn Modeling</strong></u> </p>
+<h3>Chapter 9 Evidence and Probabilities</h3>
+<p>P(A) = probabiliy of A </p>
+<p>P(B|A) = probability of B given A </p>
+<p><strong>Joint Probability</strong> of A and B both happening → P(AB)</p>
+<ul>
+<li>only when A and B are independent, they don’t affect each other</li>
+<li>for independent events <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>A</mi><mi>B</mi><mo stretchy="false">)</mo><mo>=</mo><mi>p</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo>×</mo><mi>p</mi><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p(AB) = p(A)\times p(B)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="mclose">)</span></span></span></span></li>
+</ul>
+<p>probabilities for joint events <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>A</mi><mi>B</mi><mo stretchy="false">)</mo><mo>=</mo><mi>p</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo>×</mo><mi>p</mi><mo stretchy="false">(</mo><mi>B</mi><mi mathvariant="normal">∣</mi><mi>A</mi><mo stretchy="false">)</mo><mo>=</mo><mi>p</mi><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo><mo>×</mo><mi>p</mi><mo stretchy="false">(</mo><mi>A</mi><mi mathvariant="normal">∣</mi><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p(AB) = p(A) \times p(B|A) = p(B)\times p(A|B)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="mord">∣</span><span class="mord mathnormal">A</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="mclose">)</span></span></span></span> ****</p>
+<ul>
+<li>probability of both happening when an event B depends on A</li>
+<li>we can change that to get</li>
+</ul>
+<p><strong>Bayes Theorem</strong></p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>B</mi><mi mathvariant="normal">∣</mi><mi>A</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>A</mi><mi mathvariant="normal">∣</mi><mi>B</mi><mo stretchy="false">)</mo><mo>×</mo><mi>p</mi><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">p(B|A) = \frac{p(A|B)\times p(B)}{p(A)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="mord">∣</span><span class="mord mathnormal">A</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><p>we can rewrite this for data science like </p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>C</mi><mo>=</mo><mi>c</mi><mi mathvariant="normal">∣</mi><mi>E</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>E</mi><mi mathvariant="normal">∣</mi><mi>C</mi><mo>=</mo><mi>c</mi><mo stretchy="false">)</mo><mo>×</mo><mi>p</mi><mo stretchy="false">(</mo><mi>C</mi><mo>=</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">p(C = c|E) = \frac{p(E|C = c)\times p(C = c)}{p(E)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">c</span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathnormal">c</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathnormal">c</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><p>which gives us the probability that given the evidence E, our target C takes on a particular value c </p>
+<p><strong>posterior probability</strong> - probability of an event considering new evidence E</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>C</mi><mo>=</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p(C = c)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">c</span><span class="mclose">)</span></span></span></span> ‘prior’ probability of the class before we see any evidence such as the class <em>‘base rate’</em> or prevalence of c in the population as a whole </p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>E</mi><mi mathvariant="normal">∣</mi><mi>C</mi><mo>=</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p(E|C=c)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">c</span><span class="mclose">)</span></span></span></span> is the likelyhood of seeing evidence tied to the specific class c</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p(E)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="mclose">)</span></span></span></span> is the likelyhood of evidence, how common is E in our data as a percentage occurence of E among all examples </p>
+<p>the problem with directly applying Bayes theorem to data science is the fact that we need to know <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>E</mi><mi mathvariant="normal">∣</mi><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p(E|c)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="mord">∣</span><span class="mord mathnormal">c</span><span class="mclose">)</span></span></span></span>  , however we might never encounter a specific example E in training data that is encountered in real life </p>
+<p><em>two events are independent if knowing one does not give you information on the probability of the other</em></p>
+<p><strong>Naive Bayes classifier</strong> classifies a new example by estimating the probability that the exqample belongs to a class and reports the class with the highest probability </p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>c</mi><mi mathvariant="normal">∣</mi><mi>E</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi>p</mi><mo stretchy="false">(</mo><msub><mi>e</mi><mn>1</mn></msub><mi mathvariant="normal">∣</mi><mi>c</mi><mo stretchy="false">)</mo><mo>×</mo><mi>p</mi><mo stretchy="false">(</mo><msub><mi>e</mi><mn>2</mn></msub><mi mathvariant="normal">∣</mi><mi>c</mi><mo stretchy="false">)</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo>×</mo><mi>p</mi><mo stretchy="false">(</mo><msub><mi>e</mi><mi>k</mi></msub><mi mathvariant="normal">∣</mi><mi>c</mi><mo stretchy="false">)</mo><mo>×</mo><mi>p</mi><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">p(c|E) = \frac{p(e_1|c)\times p(e_2|c)... \times p(e_k|c) \times p(c)}{p(E)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal">c</span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord mathnormal">c</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord mathnormal">c</span><span class="mclose">)</span><span class="mord">...</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord mathnormal">c</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal">c</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><p>we assume every feature e is independent so we can then find their own proportions rather than looking for an entire matching vector E </p>
+<ul>
+<li>above we notice that we still have to find p(E) which is incredibly hard,  however, given that we are only trying to classifty classes p(E) acts as a constant only ot normalize the probabilities, therefore we can simply ignore it given that it doesnt change how the answers are classified</li>
+</ul>
+<p>naive bayes is a simple classifier while still taking all the feature evidence into account</p>
+<ul>
+<li>efficient with storage space and computation time</li>
+<li>despite its simplicity, it performs surprisingly well for classification of real world tasks.</li>
+</ul>
+<p>it assumes all evidence is independent, however if two pieces of evidence are actually highly correlated, then by including them in as individual points of evidence, then it can cause double counting of positive evidence, however it is not an issue. Since we just care about classification, having double evidence, just pushes us more into the right direction, so double counting doesn’t completely hurt us</p>
+<p>If naive bayes is going to be used for the probability estimates themselves, it can be a problem, since while its good at ranking and/or classifying, the probabilities are likely to not be accurate </p>
+<p>Naive Bayes models are also ‘incremental learners’, an induction technique that allows the model to be trained one example at a time, not needing to reprocess the entire training set whenever new data comes available. </p>
+<ul>
+<li>adventageous when we want the model to keep training in the real world with new information and get updated to better fit its purpose</li>
+<li>spam email classification example, naive bayes in the basis of many spam email detection systems</li>
+<li>serves as a common baseline classifier</li>
+</ul>
+<p>Naive bayes can be adapted to model the different lifts attributable to different pieces of evidence</p>
+<p>lift can be defined as </p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>l</mi><mi>i</mi><mi>f</mi><msub><mi>t</mi><mi>c</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>x</mi><mi mathvariant="normal">∣</mi><mi>c</mi><mo stretchy="false">)</mo></mrow><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">lift_c(x) = \frac{p(x|c)}{p(x)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0197em;">l</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mord">∣</span><span class="mord mathnormal">c</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><table>
+<thead>
+<tr>
+<th>Probability Testing Conf. Matrix</th>
+<th>B’</th>
+<th>B</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A’</td>
+<td>P(B’</td>
+<td>A’) = TNR</td>
+</tr>
+<tr>
+<td>A</td>
+<td>P(B’</td>
+<td>A) = FNR</td>
+</tr>
+</tbody></table>
+<h3>Chapter 10 Representing and Mining Text</h3>
+<p>text is unstructured data, it no sort of structure we normally expect for data </p>
+<p><strong>document -</strong> one piece of text, from a sentence to a 100 page report </p>
+<ul>
+<li>composed of tokens or terms</li>
+<li>a collection of documents is a <strong>corpus</strong></li>
+</ul>
+<p><u><strong>Bag of Words</strong></u> - treats every word as a potential keyword </p>
+<p>we can increase the importance of a term in a document based on the <strong>term frequency</strong> (how much we see it) </p>
+<p><strong>text preprocessing</strong> - </p>
+<ul>
+<li><strong>normalize</strong> everything to lowercase</li>
+<li><strong>stemmed</strong>: removing suffixes from words &amp; plurals into singulas</li>
+<li><strong>stopwords</strong> removed, common words like <em>and,of,the,on,etc</em> are removed</li>
+</ul>
+<p><strong>frequency</strong> measures how prevalenta term is in a single document</p>
+<p>when mining an entire corpus we might look at frequency across all of it, removing words that are too rare or don’t appear in enough documents </p>
+<p>words should also not be too common ( if it appears too much then it doesn’t really distinguish anything) </p>
+<p>we can find the sparseness of term t using the <strong>inverse document frequency (IDF)</strong> </p>
+<p><img class="note-image" src="assets/notes-images/image%2030.png" alt="Original notes figure: image 30.png" loading="lazy"></p>
+<p>stopwords tend to have an IDF near 1 </p>
+<p><img class="note-image" src="assets/notes-images/image%2031.png" alt="Original notes figure: image 31.png" loading="lazy"></p>
+<p>TFIDF is specific to a document d given a term t</p>
+<p><img class="note-image" src="assets/notes-images/image%2032.png" alt="Original notes figure: image 32.png" loading="lazy"></p>
+<p>with this each document can be a feature vector and a corpus the set of these vectors </p>
+<p>can now be used in a data mining algo for calssification, clustering, or retrieval </p>
+<p>we can use information gain to rank terms by importance so that low gain terms can be culled </p>
+<p><img class="note-image" src="assets/notes-images/image%2033.png" alt="Original notes figure: image 33.png" loading="lazy"></p>
+<p>IDF is essentially log(1/p) given we can discard 1 as a simple constant </p>
+<p><img class="note-image" src="assets/notes-images/image%2034.png" alt="Original notes figure: image 34.png" loading="lazy"></p>
+<p>essentially we can say <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mi>D</mi><mi>F</mi><mo stretchy="false">(</mo><mi>n</mi><mi>o</mi><mi>t</mi><mi mathvariant="normal">_</mi><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mo>−</mo><mi>l</mi><mi>o</mi><mi>g</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">IDF(not\_t) = -log(1-p)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.06em;vertical-align:-0.31em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mord mathnormal">o</span><span class="mord mathnormal">t</span><span class="mord" style="margin-right:0.0278em;">_</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">−</span><span class="mord mathnormal" style="margin-right:0.0197em;">l</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.0359em;">g</span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mclose">)</span></span></span></span></p>
+<p>bottom left graph is entropy as the <strong>ev</strong> of <strong>IDF</strong> </p>
+<p><img class="note-image" src="assets/notes-images/image%2035.png" alt="Original notes figure: image 35.png" loading="lazy"></p>
+<p>for a binary term where <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mn>2</mn></msub><mo>=</mo><mn>1</mn><mo>−</mo><msub><mi>p</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">p_2 = 1-p_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> we can calculate entropy as </p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi><mi>n</mi><mi>t</mi><mi>r</mi><mi>o</mi><mi>p</mi><mi>y</mi><mo>=</mo><mo>−</mo><msub><mi>p</mi><mn>1</mn></msub><mo>×</mo><mi>l</mi><mi>o</mi><mi>g</mi><mo stretchy="false">(</mo><msub><mi>p</mi><mn>1</mn></msub><mo stretchy="false">)</mo><mo>−</mo><msub><mi>p</mi><mn>2</mn></msub><mo>×</mo><mi>l</mi><mi>o</mi><mi>g</mi><mo stretchy="false">(</mo><msub><mi>p</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">entropy = -p_1\times log(p_1) - p_2 \times log(p_2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8095em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal">t</span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mord mathnormal">o</span><span class="mord mathnormal">p</span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord">−</span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0197em;">l</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.0359em;">g</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0197em;">l</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.0359em;">g</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> </p>
+<p>which we can rewrite as a function of IDF </p>
+<p><img class="note-image" src="assets/notes-images/image%2036.png" alt="Original notes figure: image 36.png" loading="lazy"></p>
+<p>which happens to be in the form of an <strong>ev</strong> calculation, expressing entropy as the expected value of IDF(t) and IDF(not_t)  </p>
+<p><u><strong>N-gram Sequences</strong></u>  </p>
+<p>bag-of-words methods treat all terms individually discarding word order entirely </p>
+<p>we can include sequences of adjacent words as terms turning : </p>
+<p><em>The quick brown fox jumps</em> → {quick, brown, fox, jumps} <strong>(n-gram representation)</strong> </p>
+<p><strong>main disadvantage</strong> - Greately increase the size of the feature set with many n-grams only occuring once in the corpus. </p>
+<p><u><strong>Named Entity Extraction</strong></u> </p>
+<p>extracting &amp; normalizing peoples names or common names “Silicon Valley”,”New York”, etc</p>
+<p>these models are knowledge intensive simply trained on large volumes of data or hand coded </p>
+<p><u><strong>Topic Models</strong></u></p>
+<p>Topic models categorize words in sequences into certain specific topic nodes and then those nodes together create a specific topic for the entire text based on the topics that appeared </p>
+<p><strong>models like</strong></p>
+<ul>
+<li>Latent Semantic Indexing</li>
+<li>Probabilitist topic models such as Latent Dirichlet Allocation</li>
+</ul>
+<p><img class="note-image" src="assets/notes-images/image%2037.png" alt="Original notes figure: image 37.png" loading="lazy"></p>
+<h3>Chapter 12 Other Data Science Tasks and Techniques</h3>
+<p><strong>Co-occurence grouping (or assocation discovery)</strong> attempts to find associations between entities based on transactions involving them </p>
+<p><strong>lift</strong> - how much more frequenty does this association occur than we would expect by chance </p>
+<p>how much more likely B is to happen given the presence of A </p>
+<p><img class="note-image" src="assets/notes-images/image%2038.png" alt="Original notes figure: image 38.png" loading="lazy"></p>
+<p><img class="note-image" src="assets/notes-images/eq_1202.png" alt="Original notes figure: eq_1202.png" loading="lazy"></p>
+<p><strong>leverage</strong> tells us the absolute percentage of co-occurences that are ‘excess’ or not random </p>
+<p><strong>Profiling</strong> attempts to characterize the typical behavior of an individual group or population</p>
+<ul>
+<li>‘What is the typical credit card usage of this customer segment?’</li>
+</ul>
+<p><strong>bell oval</strong>- 2d guassian curve that shows the most common combination of behaviors</p>
+<p><strong>Hard clustering(k-means) -</strong> every datapoint has to be part of a group </p>
+<p><strong>Soft clustering(GMM) -</strong> Every datapoint has a probability of belonging to each group </p>
+<p><strong>similarity (unsupervised)</strong> - define a distance or similarity metric and those that naturally are closer we find a correlation in and can use that to recommend them a movie,product,social media friend, etc </p>
+<p><strong>predictive modeling (supervised)</strong> we have a specific target variable we are looking for to predict wether there is a link or not</p>
+<p><strong>data reduction</strong> does lose some information but the tradeoff comes with likely new insight gained against the information lost</p>
+<ul>
+<li>many techniques</li>
+</ul>
+<p><strong>latent information</strong> - information behind the data we tend not to know</p>
+<ul>
+<li>ie “the why behind the movie reviews”</li>
+</ul>
+<p><strong>Ensemble Methods</strong> - building multiple different data science models using different techniques and combining them into one </p>
+<ul>
+<li>improve generalization performance</li>
+</ul>
+<p>ensembles help because we expect different models to have errors in unrelated fields, by mixing them together, their errors cancel out giving us better results </p>
+<p><strong>three factors for error</strong> </p>
+<ul>
+<li><strong>inherent randomness</strong> - noise, cases where predictions aren’t deterministic</li>
+<li><strong>Bias</strong> - a systemic error caused by the model is too simple to capture the true complexity of the data</li>
+<li><strong>Variance -</strong> Sampling error for training data, root cause of overfitment</li>
+</ul>
+<p><strong>Low complexity (simple) models -</strong> High bias, low variance </p>
+<p><strong>High complexity(deep trees, many variables) models</strong> - Low bias, high variance, can hallucinate patterns that are just random noise </p>
+<ul>
+<li>by averaging results from many different high complexity models, each with slightly different data, we can smooth out overfitting</li>
+</ul>
+<p><strong>random forests -</strong> building many trees and averaging them together </p>
+<p><strong>Boosting</strong> - Building models sequentially where each model attempts to fix the previous’ bias</p>
+<p><strong>Correlation vs Causation trap</strong></p>
+</div>
+<div class="pager"><a rel="prev" href="coverage.html">← Coverage and corrections</a></div><footer>MLStudy · Machine learning and data science · All pages and figures work offline.<br><a href="coverage.html">Coverage &amp; corrections</a> · <a href="glossary.html">Glossary</a> · <a href="index.html">Start here</a></footer></article></main>
+<dialog class="definition-dialog" id="definition-dialog" aria-labelledby="definition-title"><button type="button" class="dialog-close" data-close aria-label="Close definition">Close ×</button><h2 id="definition-title">Definition</h2><p data-definition></p><a data-full-definition href="glossary.html">View in glossary →</a></dialog></body></html>

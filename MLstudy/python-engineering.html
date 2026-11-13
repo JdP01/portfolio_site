@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Turn an experiment into readable, testable Python with explicit contracts, repeatable artifacts, Linux awareness, and reviewable Git changes."><title>Reliable Python engineering and reproducibility · MLStudy</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/style.css"><link rel="stylesheet" href="assets/theme.css"><script>try{var t=localStorage.getItem('data-science-study-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}</script><script src="assets/glossary.js" defer></script><script src="assets/app.js" defer></script></head>
+<body><a class="skip" href="#main">Skip to content</a><aside class="sidebar"><a class="portfolio-back" href="../views/projects.html" aria-label="Back to Juan Pleitez’s projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m12 5-7 7 7 7M5 12h15"/></svg><span>Back to projects</span></a><a class="brand" href="index.html">MLStudy</a><p class="subtitle">A personal research textbook<br>Machine learning &amp; data science</p><div class="controls"><button type="button" data-theme-toggle>Dark mode</button><button type="button" class="mobile-menu" data-menu-toggle aria-controls="study-nav" aria-expanded="false">Sections</button></div><nav id="study-nav" aria-label="Study sections"><p class="nav-group">Start here</p><a href="index.html">Machine learning and data science</a>
+<p class="nav-group">Foundations</p><a href="lifecycle.html">The Analytics Lifecycle</a>
+<a href="problem-framing.html">Framing Business Problems as Analytics Tasks</a>
+<a href="data-preparation.html">Preparing Reliable, Available Data</a>
+<a href="probability.html">Probability, Evidence, and Naive Bayes</a>
+<a href="decision-trees.html">Decision Trees and Supervised Segmentation</a>
+<a href="linear-models.html">Linear Models, Logistic Regression, and Margins</a>
+<p class="nav-group">Core modeling</p><a href="validation.html">Validation and generalization</a>
+<a href="similarity-clustering.html">Similarity, neighbors, and clusters</a>
+<a href="evaluation.html">Evaluation, ranking, and business value</a>
+<a href="text-mining.html">Text representation and mining</a>
+<a href="associations-ensembles.html">Associations, ensembles, and causal caution</a>
+<p class="nav-group">Applied topics</p><a href="neural-anomaly.html">Neural networks for anomaly detection</a>
+<a href="optimization.html">Numerical optimization for manufacturing</a>
+<a href="pii-phi.html">Contextual PII and PHI detection in text</a>
+<a href="python-engineering.html" aria-current="page">Reliable Python engineering and reproducibility</a>
+<a href="delivery.html">Delivery, serving, monitoring, and rollback</a>
+<a href="teamwork.html">Team delivery, communication, and accountable progress</a>
+<a href="applied-projects.html">Applied projects and practice</a>
+<p class="nav-group">Reference</p><a href="glossary.html">Glossary</a>
+<a href="coverage.html">Coverage and corrections</a>
+<a href="source-notes.html">Original notes and figures</a></nav></aside>
+<main id="main" tabindex="-1"><article class="reading"><header><p class="eyebrow">Applied concepts</p><h1>Reliable Python engineering and reproducibility</h1><p class="lead">Turn an experiment into readable, testable Python with explicit contracts, repeatable artifacts, Linux awareness, and reviewable Git changes.</p></header><div class="page-toc" aria-label="On this page"><strong>On this page</strong><ul><li><a href="#module-boundaries">Separate responsibilities before adding complexity</a></li><li><a href="#illustrative-code">An illustrative input contract</a></li><li><a href="#test-pyramid">Test behavior at several boundaries</a></li><li><a href="#reproducible-artifacts">Persistence and reproducibility</a></li><li><a href="#linux-and-git">Linux and Git as working habits</a></li></ul></div>
+      <h2 id="module-boundaries">Separate responsibilities before adding complexity</h2>
+      <p>A reliable project separates data access, input validation, feature preparation, model fitting, prediction, evaluation, and reporting. A notebook can explore hypotheses, but important transformations should become importable functions with explicit inputs and outputs. Keep configuration separate from implementation: thresholds, feature names, paths, and split dates should not be hidden throughout a script. Validate configuration and record the resolved settings for every run.</p>
+      <p>The fit/transform distinction prevents <a class="term" href="glossary.html#leakage">leakage</a>. Fitting learns state, such as scaling statistics, from training data only. Prediction uses that frozen state and must not silently refit it. Match training and serving feature names, order, units, missing-value behavior, and data types. A readable <a class="term" href="glossary.html#baseline">baseline</a> with a clear contract is easier to validate than a deeply abstract framework with undocumented behavior. Connect this design to <a href="data-preparation.html">data preparation</a> and <a href="lifecycle.html">the lifecycle</a>.</p>
+      <h2 id="illustrative-code">An illustrative input contract</h2>
+      <p>The following code is an educational example, not something this offline website executes. It validates an inference boundary while leaving model-specific fit and predict behavior in another module. The immutable configuration makes accidental changes less likely and supports <a class="term" href="glossary.html#reproducibility">reproducibility</a>. A production contract would also check feature identities and units, not merely vector length.</p>
+      <pre><code class="language-python">from dataclasses import dataclass
+from math import isfinite
+from numbers import Real
+from collections.abc import Sequence
+
+@dataclass(frozen=True)
+class InputConfig:
+    feature_count: int
+
+    def __post_init__(self) -&gt; None:
+        if type(self.feature_count) is not int or self.feature_count &lt;= 0:
+            raise ValueError("feature_count must be a positive integer")
+
+def validate_row(
+    values: Sequence[float], config: InputConfig
+) -&gt; tuple[float, ...]:
+    if len(values) != config.feature_count:
+        raise ValueError("unexpected feature count")
+    if any(isinstance(v, bool) or not isinstance(v, Real) for v in values):
+        raise ValueError("features must be real numbers, not booleans")
+    result = tuple(float(v) for v in values)
+    if not all(isfinite(v) for v in result):
+        raise ValueError("features must be finite")
+    return result</code></pre>
+      <p>Rejecting invalid input is often safer than coercing it silently, but the policy must suit the application. Some pipelines deliberately impute missing values; that imputer must be fitted on training data and persisted. Do not print the offending row if it could contain protected information. Error messages should identify the violated contract without disclosing raw records. Use specific exceptions and make expected failures distinguishable from unexpected programming errors.</p>
+      <h2 id="test-pyramid">Test behavior at several boundaries</h2>
+      <table><thead><tr><th>Test level</th><th>Concrete synthetic example</th><th>What it establishes</th></tr></thead><tbody><tr><td>Unit</td><td>Two finite values pass a two-feature contract; a wrong width, NaN, infinity, or boolean fails.</td><td>The validation rule works in isolation.</td></tr><tr><td>Integration</td><td>A fitted scaler and model save, reload, and predict the same ordered fixture.</td><td>Components agree on schemas and persistence.</td></tr><tr><td>End-to-end</td><td>A tiny synthetic dataset proceeds through splitting, fitting, scoring, and report generation.</td><td>The complete path produces required artifacts without external data.</td></tr></tbody></table>
+      <p>Test that prediction does not change fitted state, shuffled feature names are rejected, and preprocessing never fits on validation rows. For a simple linear-model fixture, hand-calculate an expected prediction rather than only checking that execution succeeds. For stochastic training, use appropriate numerical tolerances and invariant checks. A test that asserts every score is exactly identical across unrelated hardware may fail for reasons unrelated to correctness.</p>
+      <p>Keep fixtures small and synthetic, with no personal identifiers or network requirement. Include empty inputs, malformed configuration, unknown categories, duplicate identifiers, and boundary thresholds. Unit tests do not replace statistical <a href="validation.html">validation</a>: passing code tests says little about <a class="term" href="glossary.html#generalization">generalization</a>. Conversely, a good test metric does not prove a persistence path or input handler is correct. Both kinds of evidence belong in the release checklist.</p>
+      <h2 id="reproducible-artifacts">Persistence and reproducibility</h2>
+      <p>Set and record random-number generator seeds for split generation, sampling, and stochastic training. Use explicit generator objects where practical so unrelated calls do not consume shared state unexpectedly. Seeds alone do not guarantee bitwise reproducibility: package versions, parallel execution, hardware kernels, and data ordering can matter. Document whether the goal is identical outputs or statistically consistent results.</p>
+      <p>Persist the fitted preprocessing, model, feature schema, threshold, and metadata together under a versioned artifact identifier. Record code revision, dependency versions, configuration, data snapshot reference, split definition, and evaluation results without <a class="term" href="glossary.html#embedding">embedding</a> protected rows. Verify artifact integrity and compatibility before use. Load serialized models only from trusted, approved sources; some formats can execute code while loading. A model file without its preprocessing and provenance is not a reproducible deliverable.</p>
+      <h2 id="linux-and-git">Linux and Git as working habits</h2>
+      <p>Understand Linux file ownership and read, write, and execute permissions; use the narrowest access necessary. A virtual environment isolates Python dependencies but is not a security sandbox. A process has a working directory, environment, output streams, and an exit status. Pipes connect output to another process, while standard error remains distinct unless deliberately redirected. A <a class="term" href="glossary.html#pipeline">pipeline</a> can hide an earlier failure unless the surrounding automation checks statuses appropriately. These concepts require no environment setup for this website.</p>
+      <p>Use a focused Git branch, small coherent commits, and a pull request explaining purpose, tests, assumptions, and rollback impact. Review diffs before sharing. Never commit credentials, protected datasets, or local secret configuration; removing a secret from the latest file does not erase repository history. Peer review should examine contracts, leakage, failure handling, and evidence, not only formatting. Record unresolved concerns and keep revisions easy to inspect.</p>
+      <details><summary>What makes Python code “production quality”?</summary><p>Clear responsibilities, documented input/output contracts, useful tests, reproducible artifacts, informative safe errors, and a handoff another person can operate. Complexity or extensive abstraction is not a substitute for these properties.</p></details>
+      <details><summary>How would you diagnose different results after reloading?</summary><p>Compare artifact and preprocessing versions, feature order, configuration, seeds, dependency versions, and execution mode. Reproduce with a small synthetic fixture before inspecting approved data under the proper access controls.</p></details>
+    <div class="pager"><a rel="prev" href="pii-phi.html">← Contextual PII and PHI detection in text</a><a rel="next" href="delivery.html">Delivery, serving, monitoring, and rollback →</a></div><footer>MLStudy · Machine learning and data science · All pages and figures work offline.<br><a href="coverage.html">Coverage &amp; corrections</a> · <a href="glossary.html">Glossary</a> · <a href="index.html">Start here</a></footer></article></main>
+<dialog class="definition-dialog" id="definition-dialog" aria-labelledby="definition-title"><button type="button" class="dialog-close" data-close aria-label="Close definition">Close ×</button><h2 id="definition-title">Definition</h2><p data-definition></p><a data-full-definition href="glossary.html">View in glossary →</a></dialog></body></html>
