@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "render:notes": "node scripts/render-notes.mjs"
+    "render:notes": "node scripts/render-notes.mjs",
+    "test:notebook": "node --test scripts/notebook.test.mjs"
   },
   "devDependencies": {
     "katex": "0.19.1",

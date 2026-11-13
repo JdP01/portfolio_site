@@ -139,8 +139,12 @@ nav a[aria-current=page] {
 main {
   margin-left: 300px;
   padding: 3.5rem clamp(1.5rem, 5vw, 5rem) 4rem;
-  max-width: 1320px;
+  max-width: none;
   min-width: 0;
+}
+
+.reading {
+  margin-inline: auto;
 }
 
 h1,
@@ -193,6 +197,13 @@ details,
 .worked-example {
   border-left-color: var(--highlight);
   padding: 1rem 1.3rem;
+}
+
+.notebook-exercise h2 {
+  margin: 0 0 .75rem;
+  padding: 0;
+  border: 0;
+  font-size: 1.4rem;
 }
 
 th {
